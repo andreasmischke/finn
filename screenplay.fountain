@@ -119,14 +119,31 @@ Okay, viel Glück!
 
 EMMA
 Hallo Finn! Das ist aber schön, dass du vorbeischaust!
+Möchtest du mir an der Kasse helfen?
 
 FINN
-Hallo Emma! Hast du Lucy gesehen?
+Oh ja, das mach ich gerne!
 
-[[Kassieren / Rückgeld berechnen]]
+> _Das zweite Minispiel beginnt_ <
+
+ERZAEHLER
+Da kommt schon der erste Kunde. 
+/* Kassieren / Rückgeld berechnen */
 
 .EXT: Bauer Karls Hühnerhof
 
-[[Eierkartons]]
+/* Eierkartons auffüllen */
 
 .Finale: Finn findet ihre Katze wieder
+
+/*
+Weitere Ideen:
+
+-   Ordner einsortieren
+    3 Regalbretter mit roten/blauen/grünen Ordnern
+    Auf jedem Brett ist Platz für 10 Ordner und es sind 3-4 Lücken
+    Die Ordner sind durchnummeriert und sortiert
+    Der Spieler bekommt nacheinander einen Ordner und muss ihn in der richtigen
+    Reihe an der richtigen Stelle einsortieren.
+
+*/
