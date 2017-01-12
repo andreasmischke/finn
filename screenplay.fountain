@@ -1,0 +1,132 @@
+Title: Finns Zahlenabenteuer
+Credit: Written by
+Author: Andreas Mischke <andreas@mischke.me>
+Draft date: 2017-01-11
+Copyright: (c) 2016 WTFPL
+
+====
+
+.EXT: Vor Finns Haus
+
+Finn sitzt vor ihrem Haus und ist traurig.
+
+ERZAEHLER
+Hallo Finn, was ist denn los? Warum bist du so traurig?
+
+FINN
+Ich finde Lucy nicht mehr. Lucy ist meine Katze. Ich habe mit ihr im Garten gespielt. Dann bin ich kurz ins Haus gegangen, um etwas zu trinken zu holen und als ich wieder in den Garten kam, war sie weg.
+
+ERZAEHLER
+Oh, das ist schade. Hast du sie denn schon gesucht?
+
+FINN
+Nein, alleine schaffe ich das nicht.
+
+ERZAEHLER
+Das ist kein Problem, ich hätte hier jemanden, der dir sicher gerne hilft.
+
+FINN
+(An den Spieler gerichtet)
+Wirklich? Würdest du mir bei der Suche helfen? Das wäre super! Ich hole nur kurz meine Tasche und dann können wir los!
+
+Geht zur Bank vor dem Haus und nimmt ihre Tasche.
+
+FINN
+Am besten gehen wir zuerst zu meinem Freund Emil, vielleicht hat er sie gesehen.
+
+
+
+.EXT: In Emils Garten
+
+Emil sitzt im Baum und baut ein Baumhaus. Bisher ist nur die Bodenplatte fertig und Emil bereitet gerade die erste Wand vor.
+Am Fuß des Baums steht eine Werkzeugkiste, in der deutlich eine Taschenlampe und Nägel zu sehen sind.
+
+FINN
+Hallo Emil! Was machst du da?
+
+EMIL
+Hallo Finn! Ich baue mir ein Baumhaus. Der Boden ist schon fertig!
+
+FINN
+Wow, das sieht schon gut aus! Sag mal, hast du Lucy gesehen?
+
+EMIL
+Nein, heute noch nicht. Ist sie denn weg?
+
+FINN
+Ja, ich war vorhin mit ihr im Garten und während ich kurz im Haus war, ist sie verschwunden.
+
+EMIL
+Oh nein, hoffentlich findest du sie bald wieder.
+In meinem Werkzeugkoffer ist eine Taschenlampe. Ich leihe sie dir gerne aus, dann kannst du Lucy auch finden, wenn sie sich irgendwo versteckt hat.
+
+Finn nimmt sich Emils Taschenlampe aus dem Werkzeugkoffer.
+
+FINN
+Vielen Dank, ich werde gut darauf aufpassen!
+
+Finn steckt die Taschenlampe in ihre Tasche.
+
+EMIL
+Finn, kannst du mir kurz helfen? Ich muss diese Bretter festnageln, aber die Nägel sind in meinem Werkzeugkoffer. Kannst du sie mir geben?
+
+FINN
+Klar, ich helfe dir gerne! Wieviele Nägel brauchst du?
+
+> _Das erste Minispiel beginnt_ <
+
+EMIL
+Für das erste Brett brauche ich vier Nägel
+
+Der Spieler muss nun in der Werkzeugkiste vier Nägel abzählen und dann mit einem Klick auf "Fertig" bestätigen.
+
+*Fallentscheidung*
+
+*Fall 1: Der Spieler hat die korrekte Menge abgezählt*
+
+EMIL
+Danke!
+
+Man hört Hammerschläge
+
+EMIL
+Für das nächste Brett benötige ich *N* Nägel
+
+*Ende Fall 1*
+
+*Fall 2: Der Spieler hat die falsche Menge abgezählt*
+
+EMIL
+Das passt aber nicht ganz. Zähl nochmal nach...
+
+*Ende Fall 2*
+
+> _Ende des ersten Minispiels_ <
+
+EMIL
+Super, vielen Dank! Du warst mir eine große Hilfe!
+
+FINN
+Gern geschehen!
+Ich muss jetzt weiter, damit ich Lucy bald wieder finde!
+
+EMIL
+Okay, viel Glück!
+
+
+
+.INT: Emmas Einkaufsladen
+
+EMMA
+Hallo Finn! Das ist aber schön, dass du vorbeischaust!
+
+FINN
+Hallo Emma! Hast du Lucy gesehen?
+
+[[Kassieren / Rückgeld berechnen]]
+
+.EXT: Bauer Karls Hühnerhof
+
+[[Eierkartons]]
+
+.Finale: Finn findet ihre Katze wieder
