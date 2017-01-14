@@ -119,22 +119,138 @@ Okay, viel Glück!
 
 EMMA
 Hallo Finn! Das ist aber schön, dass du vorbeischaust!
-Möchtest du mir an der Kasse helfen?
+Möchtest du mir beim Wiegen helfen?
 
 FINN
 Oh ja, das mach ich gerne!
 
 > _Das zweite Minispiel beginnt_ <
 
-ERZAEHLER
-Da kommt schon der erste Kunde. 
-/* Kassieren / Rückgeld berechnen */
+Der Spieler sieht eine Waage mit 2 Waagschalen. Je Aufgabe sind in beiden Waagschalen eine unterschiedliche Anzahl desselben Artikels. Der Spieler muss nun durch auffüllen einer der beiden Waagschalen die Waage ins Gleichgewicht bringen.
 
-.EXT: Bauer Karls Hühnerhof
+> _Ende des zweiten Minispiels_ <
 
-/* Eierkartons auffüllen */
+EMMA
+Vielen Dank, Finn! Das hast du super gemacht!
 
-.Finale: Finn findet ihre Katze wieder
+FINN
+Danke, es hat mir viel Spaß gemacht!
+Jetzt muss ich aber weiter. Ich bin auf der Suche nach Lucy, sie ist weggelaufen.
+
+EMMA
+Hier, ich gebe dir noch ein paar Katzenleckerlis mit, dann kannst du Lucy aus ihrem Versteck locken. Viel Glück bei deiner Suche!
+
+Emma gibt Finn eine Packung Katzenleckerlis.
+
+FINN
+Danke!
+
+
+
+.INT: Papas Büro
+
+FINN
+Hallo Papa!
+
+PAPA
+Hallo Finn, Du kommst gerade richtig!
+Ich hab hier wieder ein paar Ordner, die einsortiert werden müssen. Das machst du doch so gerne, oder?
+
+FINN
+Ja, das kann ich gut!
+
+> _Das dritte Minispiel beginnt_ <
+
+Man sieht ein Regal mit drei Ebenen. Je Ebene ist Platz für 10 Ordner und in jeder Ebene fehlen 2-3 Ordner. Alle Ordner einer Ebene sind jeweils in einer Farbe: Rot, grün und blau. Die Ordner sind innerhalb ihrer Ebenen mit Ziffern und Würfelsymbolen durchnummeriert.
+Der Spieler bekommt nacheinander die fehlenden Ordner gezeigt und muss sie mit Drag'n'drop einsortieren.
+
+> _Ende des zweiten Minispiels_ <
+
+FINN
+Jetzt ist alles wieder aufgeräumt!
+
+PAPA
+Danke Finn, das sieht super aus!
+
+FINN
+Du Papa... Lucy ist schon wieder weg. Hast du eine Idee, wo sie sein könnte?
+
+PAPA
+Hm... Das letzte Mal, als wir Lucy suchen mussten, war sie drüben auf Karls Hühnerhof. Hast du dort schon gesucht?
+
+FINN
+Das ist eine gute Idee, da war ich noch nicht.
+
+PAPA
+Dann lauf mal schnell hin, wir sehen uns heute Abend!
+
+FINN
+Okay, tschüss!
+
+
+.EXT: Karls Hühnerhof
+
+KARL
+Hallo Finn! Na, magst du mir wieder beim Eier einpacken helfen?
+
+FINN
+Hallo Karl! Sehr gerne!
+
+> _Das vierte Minispiel beginnt_ <
+
+Der Spieler sieht vor sich einen offenen 6er-Eierkarton. Im Deckel steht eine Additionsaufgabe mit der Summe 6, z.B. 2+4. Auf der linken Seite sind weiße, auf der rechten Seite braune Eier neben dem Eierkarton.
+Aufgabe des Spielers ist, denn Eierkarton der Rechenaufgabe entsprechend zu füllen, im o.g. Beispiel also 2 weiße und 4 braune Eier in den Eierkarton zu legen (Drag'n'drop). Dabei gilt nicht das Kommutativgesetz. In dem Beispiel wäre die Aufgabe also nicht erfüllt, wenn 4 weiße und 2 braune Eier in den Karton gelegt werden.
+
+> _Ende des vierten Minispiels_ <
+
+KARL
+Gute Arbeit, Finn! Dann kann ich morgen früh direkt auf den Markt fahren und die Eier verkaufen!
+
+FINN
+Danke, das hab ich gern gemacht!
+Sag mal Karl, hast du vielleicht Lucy gesehen?
+
+KARL
+Lass mal überlegen... Nein, aber ich war auch den ganzen Tag mit dem Traktor auf dem Feld. Aber sieh doch mal in der Scheune nach. Da war sie ja schon öfters.
+
+FINN
+Das ist eine gute Idee!
+
+
+
+.INT: In Karls Scheune
+
+Man sieht eine unaufgeräumte Scheune mit allerlei Dingen herumliegen, ähnlich einem Wimmelbild. Das ganze Bild ist mit einem dunklen Schatten überdeckt.
+
+FINN
+Oh, hier drin ist es aber dunkel. Zum Glück hab ich Emils Taschenlampe bekommen, damit kann ich Lucy suchen.
+
+Finn schaltet die Taschenlampe an. Ein "Lichtkegel" erscheint, d.h. ein kreisrunder Bereich des Bildes wird ohne Schatten angezeigt. Der Spieler kann nun durch hin- und herbewegen der Maus den Lichtkegel bewegen und die Katze suchen.
+Sobald der Spieler den Lichtkegel eine bestimmte Zeit (500-1000ms) über der Katze hält, gilt die Katze als gefunden.
+
+FINN
+Da ist Lucy! Sie versteckt sich unter [[Gegenstand einfügen]].
+Lucy, ich bin's Finn. Komm raus aus deinem Versteck!
+Du traust dich wohl nicht. Schau mal, was ich hier habe.
+
+Finn holt die Katzenleckerlis von Emma aus ihrem Rucksack und hält sie Lucy hin.
+Daraufhin kommt Lucy langsam aus ihrem Versteck geschlichen, frisst aus Lucys Hand und springt ihr auf den Arm.
+
+
+
+.EXT: Zurück auf Karls Hühnerhof
+
+FINN
+Schau mal, Karl! Ich habe Lucy wieder gefunden!
+
+KARL
+Das freut mich! Ich hab mir doch gleich gedacht, dass sie sich wieder in der Scheune versteckt haben wird!
+
+FINN
+(an den Spieler gerichtet)
+Danke, dass du mir geholfen hast!
+Wenn du Lust hast, komm mich wieder besuchen und wir können wieder bei Emma im Laden helfen oder Papas Ordner einsortieren!
+
 
 /*
 Weitere Ideen:
