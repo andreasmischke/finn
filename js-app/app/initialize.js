@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // do your setup here
-  console.log('Initialized app');
+    let SceneManager = require('./scenes/SceneManager');
+
+    console.log('initialized');
+    SceneManager.navigate('office_game');
+
+    console.log('main loaded');
 });
