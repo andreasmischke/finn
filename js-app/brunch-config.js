@@ -1,4 +1,8 @@
 module.exports = {
+  notifications: false,
+  server: {
+      hostname: '0.0.0.0'
+  },
   files: {
     javascripts: {
       joinTo: {
