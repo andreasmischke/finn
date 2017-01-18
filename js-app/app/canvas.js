@@ -1,14 +1,18 @@
 let $app = document.getElementById('app');
 let $scene = document.getElementById('scene');
 
-let resizeRunning = false;
+let timeoutThrottle = false;
+let resizeTimeout;
 let resizeApp = function() {
-    if(resizeRunning) {
-        return;
-    }
-    resizeRunning = true;
 
-    requestAnimationFrame(function() {
+    if(timeoutThrottle)
+        return;
+    timeoutThrottle = true;
+    setTimeout(_ => timeoutThrottle = false, 500);
+
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+        resizeTimeout = null;
         let w = window.innerWidth,
             h = window.innerHeight,
             height = w / 16 * 9;
@@ -28,8 +32,7 @@ let resizeApp = function() {
             $app.style.left = (w - width) / 2 + "px";
         }
         $app.style.fontSize = $app.getBoundingClientRect()['height'] / 100 + "px";
-        resizeRunning = false;
-    });
+    }, 750);
 };
 
 window.addEventListener('resize', resizeApp);
