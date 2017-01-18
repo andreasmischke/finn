@@ -1,4 +1,5 @@
-import {range} from '../utils';
+import interact from 'interactjs';
+import {range, shuffle} from '../utils';
 import Scene from './Scene';
 
 export default class OfficeGameScene extends Scene {
@@ -25,17 +26,115 @@ export default class OfficeGameScene extends Scene {
             return shelf;
         });
 
-        let dragContainer = document.createElement('div');
-        dragContainer.classList.add('drag_container');
+        self.messageBox = document.createElement('div');
+        self.messageBox.classList.add('message_box');
+        scene.appendChild(self.messageBox);
 
-        missing_folders.forEach(function(m) {
+        let dragShadow = document.createElement('div');
+        dragShadow.classList.add('drag_shadow');
+
+        self.dragContainer = document.createElement('div');
+        self.dragContainer.classList.add('drag_container');
+        dragShadow.appendChild(self.dragContainer);
+
+        shuffle(missing_folders).forEach(function(m) {
             let { color: col, number: nr, drop_target: target } = m;
             let missing = self.create_draggable_folder(col, nr, target);
-            dragContainer.appendChild(missing);
+            self.dragContainer.appendChild(missing);
         });
-        scene.appendChild(dragContainer);
 
-        console.log(missing_folders);
+        scene.appendChild(dragShadow);
+
+        interact('.draggable_folder').draggable({
+            inertia: true,
+            /* restrict: {
+                restriction: 'parent',
+                endOnly: true
+            }, */
+            onmove: function(e) {
+                let target = e.target,
+                    x = (parseFloat(target.getAttribute("data-x")) || 0) + e.dx,
+                    y = (parseFloat(target.getAttribute("data-y")) || 0) + e.dy;
+
+                target.style.transform = `translate(${x}px, ${y}px)`;
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
+            },
+            onend: function(e) {
+                if(e.interaction.dropElement == null) {
+                    let folder = e.target;
+                    folder.removeAttribute('data-x');
+                    folder.removeAttribute('data-y');
+                    folder.style.transform = '';
+                    if(folder.parentElement != self.dragContainer) {
+                        self.dragContainer.appendChild(folder);
+                    }
+                }
+                self.check_finish();
+            }
+        });
+        interact('.folder_space').dropzone({
+            overlap: 0.5,
+            ondragenter: function(e) {
+                e.target.classList.add('drop-target');
+            },
+            ondragleave: function(e) {
+                e.target.classList.remove('drop-target');
+            },
+            ondrop: function(e) {
+                let space = e.target,
+                    { x, y } = space.getBoundingClientRect(),
+                    folder = e.relatedTarget;
+
+                folder.style.top = y + "px";
+                folder.style.left = x + "px";
+                folder.style.transform = '';
+
+                if(space.childElementCount > 0) {
+                    space.childNodes.forEach(function(folder) {
+                        self.dragContainer.appendChild(folder);
+                    });
+                }
+                space.appendChild(folder);
+            },
+            ondropdeactivate: function(e) {
+                let folder = e.relatedTarget;
+                folder.removeAttribute('data-x');
+                folder.removeAttribute('data-y');
+                folder.style.transform = 0;
+                e.target.classList.remove('drop-target');
+            }
+        });
+    }
+
+    check_finish() {
+        if(this.dragContainer.childElementCount == 0) {
+            let foldersNodelist = document.querySelectorAll('.draggable_folder');
+            let folders = Array.prototype.slice.call(foldersNodelist);
+            let correct_count = folders.reduce(function(acc, folder) {
+                let folder_space = folder.parentElement;
+                if(folder_space.getAttribute('data-type') == folder.getAttribute('data-type')) {
+                    return acc + 1;
+                } else {
+                    return acc;
+                }
+            }, 0);
+            if(correct_count == 9) {
+                this.showMessage("Richtig!");
+            } else {
+                this.showMessage("Leider falsch. Schau nochmal genau hin!");
+            }
+        }
+    }
+
+    showMessage(message) {
+        let box = this.messageBox;
+        box.textContent = message;
+        box.classList.add('active');
+        clearTimeout(this.messageBoxTimeout);
+        this.messageBoxTimeout = setTimeout(function() {
+            box.classList.remove('active');
+        }, 5000);
     }
 
     fill_shelf_with_folders(shelf, color, missing) {
@@ -53,6 +152,7 @@ export default class OfficeGameScene extends Scene {
             if(missing_numbers.includes(i)) {
                 let folder_space = document.createElement('div');
                 folder_space.classList.add('folder_space');
+                folder_space.setAttribute('data-type', color + i);
                 shelf.appendChild(folder_space);
                 return acc.concat({
                     'number': i,
@@ -76,6 +176,7 @@ export default class OfficeGameScene extends Scene {
         let offset = this.folder_sprite_offset(color, number);
         let folder = document.createElement('div');
         folder.classList.add('folder');
+        folder.setAttribute('data-type', color + number);
         folder.style.backgroundPosition = offset;
         return folder;
     }

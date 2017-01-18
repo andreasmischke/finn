@@ -12,7 +12,7 @@
     "prod": "brunch build --production"
   },
   "dependencies": {
-    "dragula": "^3.7.2"
+    "interactjs": "^1.2.8"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2.0.0",
