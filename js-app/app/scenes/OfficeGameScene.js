@@ -45,6 +45,8 @@ export default class OfficeGameScene extends Scene {
 
         scene.appendChild(dragShadow);
 
+        self.showMessage("Sortiere die Ordner nach Farbe und Nummer ins Regal!");
+
         interact('.draggable_folder').draggable({
             inertia: true,
             /* restrict: {
