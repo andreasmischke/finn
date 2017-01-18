@@ -27,6 +27,7 @@ let resizeApp = function() {
             $app.style.top = "";
             $app.style.left = (w - width) / 2 + "px";
         }
+        $app.style.fontSize = $app.getBoundingClientRect()['height'] / 100 + "px";
         resizeRunning = false;
     });
 };
