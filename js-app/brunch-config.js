@@ -15,5 +15,12 @@ module.exports = {
 
   plugins: {
     babel: {presets: ['es2015']}
+  },
+  overrides: {
+    production: {
+      paths: {
+        public: '../docs/'
+      }
+    }
   }
 };
