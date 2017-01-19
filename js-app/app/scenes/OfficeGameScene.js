@@ -53,6 +53,9 @@ export default class OfficeGameScene extends Scene {
                 restriction: 'parent',
                 endOnly: true
             }, */
+            onstart: function(e) {
+                e.target.style.zIndex = 1;
+            },
             onmove: function(e) {
                 let target = e.target,
                     x = (parseFloat(target.getAttribute("data-x")) || 0) + e.dx,
@@ -63,6 +66,7 @@ export default class OfficeGameScene extends Scene {
                 target.setAttribute('data-y', y);
             },
             onend: function(e) {
+                e.target.style.zIndex = '';
                 if(e.interaction.dropElement == null) {
                     let folder = e.target;
                     folder.removeAttribute('data-x');
@@ -74,7 +78,7 @@ export default class OfficeGameScene extends Scene {
                 }
                 self.check_finish();
             }
-        });
+        }).styleCursor(false);
         interact('.folder_space').dropzone({
             overlap: 0.5,
             ondragenter: function(e) {
