@@ -1,5 +1,5 @@
 import interact from 'interactjs';
-import {range, shuffle} from '../utils';
+import {range, shuffle, to_array} from '../utils';
 import Scene from './Scene';
 
 export default class OfficeGameScene extends Scene {
@@ -97,7 +97,7 @@ export default class OfficeGameScene extends Scene {
                 folder.style.transform = '';
 
                 if(space.childElementCount > 0) {
-                    space.childNodes.forEach(function(folder) {
+                    to_array(space.childNodes).forEach(function(folder) {
                         self.dragContainer.appendChild(folder);
                     });
                 }
@@ -116,10 +116,12 @@ export default class OfficeGameScene extends Scene {
     check_finish() {
         if(this.dragContainer.childElementCount == 0) {
             let foldersNodelist = document.querySelectorAll('.draggable_folder');
-            let folders = Array.prototype.slice.call(foldersNodelist);
+            let folders = to_array(foldersNodelist);
             let correct_count = folders.reduce(function(acc, folder) {
-                let folder_space = folder.parentElement;
-                if(folder_space.getAttribute('data-type') == folder.getAttribute('data-type')) {
+                let folder_space = folder.parentElement,
+                    space_type = folder_space.getAttribute('data-type'),
+                    folder_type = folder.getAttribute('data-type');
+                if(space_type == folder_type) {
                     return acc + 1;
                 } else {
                     return acc;
@@ -155,7 +157,7 @@ export default class OfficeGameScene extends Scene {
         });
         return range(10).reduce(function(acc, i) {
             let retval = null;
-            if(missing_numbers.includes(i)) {
+            if(missing_numbers.indexOf(i) > -1) {
                 let folder_space = document.createElement('div');
                 folder_space.classList.add('folder_space');
                 folder_space.setAttribute('data-type', color + i);

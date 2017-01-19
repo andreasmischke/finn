@@ -28,3 +28,7 @@ export function shuffle(arr) {
 
     return shuffled;
 }
+
+export function to_array(array_like) {
+    return Array.prototype.slice.call(array_like);
+}

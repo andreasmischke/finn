@@ -29,7 +29,7 @@ module.exports = class App {
     initialize_resize_listener() {
         this.resize_timeout_throttle = false;
         this.resize_timeout_id = null;
-        window.addEventListener('resize', this.resize_listener);
+        window.addEventListener('resize', this.resize_listener.bind(this));
         this.resize_listener();
     }
 
