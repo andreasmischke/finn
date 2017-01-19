@@ -1,5 +1,13 @@
+import scene_manager from './scenes/SceneManager';
+
 let $app = document.getElementById('app');
 let $scene = document.getElementById('scene');
+
+let $main_menu_btn = document.querySelector('img.hud_mainmenu');
+
+$main_menu_btn.onclick = function(e) {
+    scene_manager.navigate('main_menu');
+};
 
 let timeoutThrottle = false;
 let resizeTimeout;

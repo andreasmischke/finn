@@ -1,30 +1,42 @@
-import OfficeGameScene from './OfficeGameScene'
 import canvas from 'canvas'
 
-var scenes = {
-    'office_game': new OfficeGameScene()
-};
-var current_scene;
+class SceneManager {
+    constructor() {
+        this.scenes = {};
+        this.current_scene;
 
-var navigate = function(target) {
-
-    if(target in scenes) {
-
-        let new_scene = scenes[target];
-
-        current_scene && current_scene.cleanup && current_scene.cleanup();
-
-        var scene = canvas.clean();
-
-        new_scene.render(scene);
-
-        current_scene = new_scene;
-
-    } else {
-        throw `Unknown scene '${target}'`;
+        window.addEventListener('finn-navigate', this.navigateEventListener);
     }
-};
 
-module.exports = {
-    navigate: navigate
-};
+    register(name, scene) {
+        this.scenes[name] = scene;
+    }
+
+    navigateEventListener(evt) {
+        console.log(evt);
+    }
+
+    navigate(target) {
+
+        if(target in this.scenes) {
+
+            let new_scene = this.scenes[target],
+                scene = canvas.clean();
+
+            if(this.current_scene && this.current_scene.cleanup) {
+                this.current_scene.cleanup(scene);
+            }
+
+            new_scene.render(scene);
+
+            this.current_scene = new_scene;
+
+        } else {
+            throw `Unknown scene '${target}'`;
+        }
+    };
+}
+
+let instance = new SceneManager();
+export default instance;
+
