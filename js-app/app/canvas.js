@@ -1,13 +1,6 @@
-import scene_manager from './scenes/SceneManager';
+import scene_manager from './scenes/scene_manager';
 
-let $app = document.getElementById('app');
-let $scene = document.getElementById('scene');
-
-let $main_menu_btn = document.querySelector('img.hud_mainmenu');
-
-$main_menu_btn.onclick = function(e) {
-    scene_manager.navigate('main_menu');
-};
+let $app;
 
 let timeoutThrottle = false;
 let resizeTimeout;
@@ -46,17 +39,11 @@ let resizeApp = function() {
 window.addEventListener('resize', resizeApp);
 resizeApp();
 
-var clean = function() {
-    $scene.innerHTML = "";
-    return $scene;
+var init = function(app) {
+    $app = app;
 };
-var getScene = function() {
-    return $scene;
-}
-
 
 export default {
-    clean: clean,
-    getScene: getScene
+    init: init
 };
 
