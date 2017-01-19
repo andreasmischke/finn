@@ -1,49 +1,51 @@
+import {create_element} from 'utils';
 import scene_manager from './scenes/scene_manager';
 
 function create_main_menu_button() {
-    let main_menu_button = document.createElement('img');
-    main_menu_button.setAttribute('src', 'img/home_button.png');
-    main_menu_button.classList.add('hud_mainmenu');
-    main_menu_button.onclick = function(e) {
-        scene_manager.navigate('main_menu');
-    };
-    return main_menu_button;
+    return create_element('img')
+            .attr('src', 'img/home_button.png')
+            .class('hud_mainmenu')
+            .click(function(e) {
+                scene_manager.navigate('main_menu');
+            })
+            .render();
 };
 function create_bag_box() {
-    let bag_box = document.createElement('div');
-    bag_box.classList.add('hud_bag_box');
-    bag_box.appendChild(create_bag());
-    bag_box.appendChild(create_bag_button());
-    return bag_box;
+    return create_element('div')
+            .class('hud_bag_box')
+            .adopt(create_bag())
+            .adopt(create_bag_button())
+            .render();
 };
 function create_bag() {
-    let bag = document.createElement('div');
-    bag.classList.add('hud_bag');
+    let flashlight = create_element('img')
+            .attr('src', 'img/flashlight.png')
+            .class('bag_item')
+            .render();
 
-    let flashlight = document.createElement('img');
-    flashlight.setAttribute('src', 'img/flashlight.png');
-    flashlight.classList.add('bag_item');
-    bag.appendChild(flashlight);
+    let catfood = create_element('img')
+            .attr('src', 'img/catfood.png')
+            .class('bag_item')
+            .render();
 
-    let catfood = document.createElement('img');
-    catfood.setAttribute('src', 'img/catfood.png');
-    catfood.classList.add('bag_item');
-    bag.appendChild(catfood);
-
-    return bag;
+    return create_element('div')
+            .class('hud_bag')
+            .adopt(flashlight)
+            .adopt(catfood)
+            .render();
 };
 function create_bag_button() {
-    let bag_button = document.createElement('img');
-    bag_button.setAttribute('src', 'img/bag_button.png');
-    bag_button.classList.add('hud_bag_button');
-    return bag_button;
+    return create_element('img')
+            .attr('src', 'img/bag_button.png')
+            .class('hud_bag_button')
+            .render();
 };
 function init() {
-    let hud = document.createElement('div');
-    hud.setAttribute('id', 'hud');
-    hud.appendChild(create_main_menu_button());
-    hud.appendChild(create_bag_box());
-    return hud;
+    return create_element('div')
+            .id('hud')
+            .adopt(create_main_menu_button())
+            .adopt(create_bag_box())
+            .render();
 };
 
 module.exports = {

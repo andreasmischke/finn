@@ -29,6 +29,43 @@ export function shuffle(arr) {
     return shuffled;
 }
 
+class DomElementDraft {
+    constructor(tag) {
+        this.el = document.createElement(tag);
+    }
+    class(clazz) {
+        this.el.classList.add(clazz);
+        return this;
+    }
+    id(id) {
+        this.el.setAttribute('id', id);
+        return this;
+    }
+    attr(name, value) {
+        this.el.setAttribute(name, value);
+        return this;
+    }
+    style(property, value) {
+        this.el.style.setProperty(property, value);
+        return this;
+    }
+    adopt(child) {
+        this.el.appendChild(child);
+        return this;
+    }
+    click(func) {
+        this.el.addEventListener('click', func);
+        return this;
+    }
+    render() {
+        return this.el;
+    }
+}
+
+export function create_element(tag) {
+    return new DomElementDraft(tag);
+}
+
 export function to_array(array_like) {
     return Array.prototype.slice.call(array_like);
 }

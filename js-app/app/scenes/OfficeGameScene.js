@@ -1,3 +1,4 @@
+import {create_element} from '../utils';
 import interact from 'interactjs';
 import {range, shuffle, to_array} from '../utils';
 import Scene from './Scene';
@@ -13,9 +14,10 @@ export default class OfficeGameScene extends Scene {
         let missing_folders = [];
         let shelves = range(4).map(function(i) {
             let missing;
-            var shelf = document.createElement("div");
-            shelf.classList.add('shelf');
-            shelf.classList.add('shelf' + i);
+            let shelf = create_element('div')
+                    .class('shelf')
+                    .class('shelf' + i)
+                    .render();
             if(i < 3) {
                 missing = self.fill_shelf_with_folders(shelf, colors[i], 3);
                 missing_folders = missing_folders.concat(missing);
@@ -26,16 +28,12 @@ export default class OfficeGameScene extends Scene {
             return shelf;
         });
 
-        self.messageBox = document.createElement('div');
-        self.messageBox.classList.add('message_box');
+        self.messageBox = create_element('div').class('message_box').render();
         scene.appendChild(self.messageBox);
 
-        let dragShadow = document.createElement('div');
-        dragShadow.classList.add('drag_shadow');
-
-        self.dragContainer = document.createElement('div');
-        self.dragContainer.classList.add('drag_container');
-        dragShadow.appendChild(self.dragContainer);
+        self.dragContainer = create_element('div')
+                .class('drag_container')
+                .render();
 
         shuffle(missing_folders).forEach(function(m) {
             let { color: col, number: nr, drop_target: target } = m;
@@ -43,7 +41,10 @@ export default class OfficeGameScene extends Scene {
             self.dragContainer.appendChild(missing);
         });
 
-        scene.appendChild(dragShadow);
+        scene.appendChild(create_element('div')
+                .class('drag_shadow')
+                .adopt(self.dragContainer)
+                .render());
 
         self.showMessage("Sortiere die Ordner nach Farbe und Nummer ins Regal!");
 
@@ -158,9 +159,10 @@ export default class OfficeGameScene extends Scene {
         return range(10).reduce(function(acc, i) {
             let retval = null;
             if(missing_numbers.indexOf(i) > -1) {
-                let folder_space = document.createElement('div');
-                folder_space.classList.add('folder_space');
-                folder_space.setAttribute('data-type', color + i);
+                let folder_space = create_element('div')
+                        .class('folder_space')
+                        .attr('data-type', color + i)
+                        .render();
                 shelf.appendChild(folder_space);
                 return acc.concat({
                     'number': i,
@@ -182,11 +184,11 @@ export default class OfficeGameScene extends Scene {
 
     create_folder(color, number) {
         let offset = this.folder_sprite_offset(color, number);
-        let folder = document.createElement('div');
-        folder.classList.add('folder');
-        folder.setAttribute('data-type', color + number);
-        folder.style.backgroundPosition = offset;
-        return folder;
+        return create_element('div')
+                .class('folder')
+                .attr('data-type', color + number)
+                .style('background-position', offset)
+                .render();
     }
 
     folder_sprite_offset(color, number) {

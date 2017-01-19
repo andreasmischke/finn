@@ -1,4 +1,5 @@
 import hud from 'hud';
+import {create_element} from 'utils';
 import scene_manager from './scenes/scene_manager';
 import OfficeGameScene from './scenes/OfficeGameScene';
 import MainMenuScene from './scenes/MainMenuScene';
@@ -20,8 +21,7 @@ module.exports = class App {
     }
 
     create_app_element() {
-        let app_element = document.createElement('div');
-        app_element.setAttribute('id', 'app');
+        let app_element = create_element('div').id('app').render();
         document.body.appendChild(app_element);
         return app_element;
     }

@@ -1,3 +1,5 @@
+import {create_element} from '../utils';
+
 let scene_element,
     scenes = {},
     current_scene;
@@ -32,8 +34,7 @@ var navigate = function(target) {
 };
 
 var get_scene_element = function() {
-    scene_element = document.createElement('div');
-    scene_element.setAttribute('id', 'scene');
+    scene_element = create_element('div').id('scene').render();
     return scene_element;
 }
 
