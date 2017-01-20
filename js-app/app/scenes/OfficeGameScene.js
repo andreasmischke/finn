@@ -50,10 +50,6 @@ export default class OfficeGameScene extends Scene {
 
         interact('.draggable_folder').draggable({
             inertia: true,
-            /* restrict: {
-                restriction: 'parent',
-                endOnly: true
-            }, */
             onstart: function(e) {
                 e.target.style.zIndex = 1;
             },
