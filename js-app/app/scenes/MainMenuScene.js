@@ -17,6 +17,5 @@ export default class MainMenuScene extends Scene {
     }
 
     cleanup(scene) {
-        scene.textContent = "";
     }
 }

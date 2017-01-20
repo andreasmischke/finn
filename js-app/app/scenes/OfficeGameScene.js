@@ -209,6 +209,5 @@ export default class OfficeGameScene extends Scene {
     }
 
     cleanup(scene) {
-        scene.style.backgroundImage = "";
     }
 }
