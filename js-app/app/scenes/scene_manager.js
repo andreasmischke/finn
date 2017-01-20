@@ -23,11 +23,12 @@ var navigate = function(target) {
 
         let new_scene = scenes[target];
 
-        clean_scene();
-
         if(current_scene && current_scene.cleanup) {
             current_scene.cleanup(scene_element);
         }
+
+        clean_scene();
+        scene_element.classList.add(target);
 
         new_scene.render(scene_element);
 
