@@ -15,7 +15,7 @@ module.exports = class App {
 
         scene_manager.register('main_menu', new MainMenuScene());
         scene_manager.register('office_game', new OfficeGameScene());
-        scene_manager.navigate('office_game');
+        scene_manager.navigate('main_menu');
 
         console.log('initialized');
     }

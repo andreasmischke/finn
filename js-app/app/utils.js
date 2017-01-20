@@ -49,6 +49,10 @@ class DomElementDraft {
         this.el.style.setProperty(property, value);
         return this;
     }
+    text(text) {
+        this.el.textContent = text;
+        return this;
+    }
     adopt(child) {
         this.el.appendChild(child);
         return this;
