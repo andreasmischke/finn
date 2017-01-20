@@ -152,8 +152,13 @@ export default class OfficeGameScene extends Scene {
         let missing_numbers = range(missing).map(function(i) {
             let missing_index = Math.floor(Math.random() * may_be_missing.length);
             let missing_number = may_be_missing[missing_index];
-            let splice_start = Math.max(0, missing_index-1);
-            may_be_missing.splice(splice_start, 3);
+            may_be_missing.splice(missing_index, 1);
+            let left = may_be_missing.indexOf(missing_number-1);
+            if(left > -1)
+                may_be_missing.splice(left, 1);
+            let right= may_be_missing.indexOf(missing_number+1);
+            if(right > -1 && right < may_be_missing.length)
+                may_be_missing.splice(right, 1);
             return missing_number;
         });
         return range(10).reduce(function(acc, i) {
