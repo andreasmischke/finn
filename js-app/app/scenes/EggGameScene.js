@@ -1,10 +1,12 @@
 import interact from 'interactjs';
-import {range, to_array, create_element} from '../utils';
+import {range, to_array, shuffle, create_element} from '../utils';
 import Scene from './Scene';
 
 export default class EggGameScene extends Scene {
 
     render(scene) {
+
+        scene.appendChild(this.create_message_box());
 
         scene.appendChild(this.create_egg_box());
 
@@ -16,24 +18,70 @@ export default class EggGameScene extends Scene {
         this.create_egg(white_source);
         scene.appendChild(white_source);
 
-        this.set_problem("2 + ? = 6");
+        this.shuffle_problems();
+        this.next_problem();
 
     }
 
-    set_problem(problem) {
-        this.problem_field.textContent = problem;
+    shuffle_problems() {
+        this.problems = shuffle(range(7));
+    }
+
+    next_problem(problem) {
+        if(this.problems.length > 0) {
+            let summand1 = this.problems.pop(),
+                summand2 = 6 - summand1;
+            this.problem = [summand1, summand2];
+            this.problem_field.textContent = `${summand1} + ${summand2} = 6`;
+            return true;
+        } else {
+            this.problem = undefined;
+            this.problem_field.textContent = "";
+            this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+            return false;
+        }
+    }
+
+    create_message_box() {
+        let box = create_element('div')
+                .class('message_box')
+                .render();
+        this.message_box = box;
+        return box;
+    }
+    show_message(message) {
+        let box = this.message_box;
+        box.textContent = message;
+        box.classList.add('active');
+        clearTimeout(this.message_box_timeout);
+        this.message_box_timeout = setTimeout(function() {
+            box.classList.remove('active');
+        }, 3000);
     }
 
     check_finish() {
-        let {brown, white} = this.dimples.reduce(function(acc, dimple) {
-            if(dimple.childElementCount > 0) {
-                acc[dimple.firstChild.getAttribute('data-color')] += 1;
-            }
-            return acc;
-        }, {white: 0, brown: 0});
+        let self = this,
+            [a, b] = self.problem,
+            {brown, white} = self.dimples.reduce(function(acc, dimple) {
+                if(dimple.childElementCount > 0) {
+                    acc[dimple.firstChild.getAttribute('data-color')] += 1;
+                }
+                return acc;
+            }, {white: 0, brown: 0});
 
         if(brown + white >= 6) {
-            setTimeout(_ => alert(`Voll! ${brown} braune und ${white} weiße!`), 0);
+            if(a == brown && b == white || a == white && b == brown) {
+                self.freeze = true;
+                self.show_message("Richtig!");
+                setTimeout(function() { 
+                    self.clear_dimples();
+                    if(self.next_problem()) {
+                        self.freeze = false;
+                    }
+                }, 3000);
+            } else {
+                self.show_message("Leider falsch. Schau nochmal genau hin!");
+            }
         }
     }
 
@@ -53,6 +101,10 @@ export default class EggGameScene extends Scene {
         return box.render();
     }
 
+    clear_dimples() {
+        this.dimples.forEach(d => d.removeChild(d.firstChild));
+    }
+
     create_problem_field() {
         this.problem_field = create_element('div')
                 .class('problem_field')
@@ -61,7 +113,8 @@ export default class EggGameScene extends Scene {
     }
 
     create_dimple(i) {
-        let dimple = create_element('div')
+        let self = this,
+            dimple = create_element('div')
                 .class('egg_dimple')
                 .class('egg_dimple_' + i)
                 .render();
@@ -69,12 +122,21 @@ export default class EggGameScene extends Scene {
         interact(dimple).dropzone({
             overlap: 0.25,
             ondragenter: function(e) {
+                if(self.freeze) {
+                    return;
+                }
                 e.target.classList.add('drop-target');
             },
             ondragleave: function(e) {
+                if(self.freeze) {
+                    return;
+                }
                 e.target.classList.remove('drop-target');
             },
             ondropdeactivate: function(e) {
+                if(self.freeze) {
+                    return;
+                }
                 e.target.classList.remove('drop-target');
             }
         });
@@ -104,9 +166,15 @@ export default class EggGameScene extends Scene {
         interact(egg).draggable({
             inertia: true,
             onstart: function(e) {
+                if(self.freeze) {
+                    return;
+                }
                 e.target.classList.remove('egg_in_box');
             },
             onmove: function(e) {
+                if(self.freeze) {
+                    return;
+                }
                 let target = e.target,
                     x = (parseFloat(target.getAttribute("data-x")) || 0) + e.dx,
                     y = (parseFloat(target.getAttribute("data-y")) || 0) + e.dy;
@@ -116,6 +184,9 @@ export default class EggGameScene extends Scene {
                 target.setAttribute('data-y', y);
             },
             onend: function(e) {
+                if(self.freeze) {
+                    return;
+                }
                 let egg = e.target,
                     dimple = e.interaction.dropElement;
 
