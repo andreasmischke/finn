@@ -34,7 +34,7 @@ var navigate = function(target) {
 };
 
 var get_scene_element = function() {
-    scene_element = create_element('div').id('scene').render();
+    scene_element = create_element('div').class('scene').render();
     return scene_element;
 }
 

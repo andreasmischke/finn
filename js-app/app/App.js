@@ -21,7 +21,7 @@ module.exports = class App {
     }
 
     create_app_element() {
-        let app_element = create_element('div').id('app').render();
+        let app_element = create_element('div').class('app').render();
         document.body.appendChild(app_element);
         return app_element;
     }

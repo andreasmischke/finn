@@ -42,7 +42,7 @@ function create_bag_button() {
 };
 function init() {
     return create_element('div')
-            .id('hud')
+            .class('hud')
             .adopt(create_main_menu_button())
             .adopt(create_bag_box())
             .render();
