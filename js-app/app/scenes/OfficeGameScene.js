@@ -1,5 +1,5 @@
-import {create_element} from '../utils';
 import interact from 'interactjs';
+import {create_element} from '../utils';
 import {range, shuffle, to_array} from '../utils';
 import Scene from './Scene';
 
