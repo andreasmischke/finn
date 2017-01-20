@@ -1,8 +1,9 @@
 import hud from 'hud';
 import {create_element} from 'utils';
 import scene_manager from './scenes/scene_manager';
-import OfficeGameScene from './scenes/OfficeGameScene';
+import EggGameScene from './scenes/EggGameScene';
 import MainMenuScene from './scenes/MainMenuScene';
+import OfficeGameScene from './scenes/OfficeGameScene';
 
 module.exports = class App {
 
@@ -15,7 +16,8 @@ module.exports = class App {
 
         scene_manager.register('main_menu', new MainMenuScene());
         scene_manager.register('office_game', new OfficeGameScene());
-        scene_manager.navigate('main_menu');
+        scene_manager.register('egg_game', new EggGameScene());
+        scene_manager.navigate('egg_game');
 
         console.log('initialized');
     }
