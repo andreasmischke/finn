@@ -17,8 +17,6 @@ export default class TreehouseGameScene extends Scene {
 
         this.shuffle_problems();
         this.next_problem();
-
-        this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
     }
 
     shuffle_problems() {
