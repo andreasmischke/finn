@@ -160,6 +160,7 @@ export default class TreehouseGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
+                e.target.parentElement.appendChild(e.target);
             },
             onmove: function(e) {
                 if(self.freeze) {
