@@ -5,6 +5,7 @@ import Scene from './Scene';
 export default class MainMenuScene extends Scene {
 
     render(scene) {
+        scene.appendChild(this.create_menu_button('TreeHouse Game', 'treehouse_game'));
         scene.appendChild(this.create_menu_button('Office Game', 'office_game'));
         scene.appendChild(this.create_menu_button('Egg Game', 'egg_game'));
     }
