@@ -49,7 +49,6 @@ export default class OfficeGameScene extends Scene {
         self.showMessage("Sortiere die Ordner nach Farbe und Nummer ins Regal!");
 
         interact('.draggable_folder').draggable({
-            inertia: true,
             onstart: function(e) {
                 e.target.style.zIndex = 1;
             },

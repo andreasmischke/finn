@@ -164,7 +164,6 @@ export default class EggGameScene extends Scene {
                 .render();
 
         interact(egg).draggable({
-            inertia: true,
             onstart: function(e) {
                 if(self.freeze) {
                     return;
