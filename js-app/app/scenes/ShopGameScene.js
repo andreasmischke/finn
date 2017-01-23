@@ -12,10 +12,12 @@ export default class ShopGameScene extends Scene {
         scene.appendChild(this.create_scale());
 
         scene.appendChild(this.create_source());
-        //scene.appendChild(this.create_finish_button());
+        scene.appendChild(this.create_finish_button());
 
         this.shuffle_problems();
         this.next_problem();
+
+        this.freeze = false;
     }
 
     shuffle_problems() {
@@ -35,14 +37,16 @@ export default class ShopGameScene extends Scene {
             if(this.problem) {
                 this.source.classList.remove('item_' + this.problem.item);
                 this.source.removeChild(this.source.firstChild);
-                this.empty_dishes();
             }
             this.problem = this.problems.pop();
             this.source.classList.add('item_' + this.problem.item);
             this.source.appendChild(this.create_item(this.problem.item));
+            this.reset_dishes(this.problem.sum, this.problem.less, this.problem.item);
+            return true;
         } else {
             this.problem = undefined;
             this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+            return false;
         }
     }
 
@@ -66,16 +70,13 @@ export default class ShopGameScene extends Scene {
 
     check_finish() {
         let self = this,
-            {sum, less} = this.problem;
+            {sum} = self.problem,
+            right_count = self.right_dish.childElementCount;
 
-        console.log(sum, less);
-        return;
-
-        if(nail_count == self.problem) {
+        if(sum == right_count) {
             self.freeze = true;
             self.show_message("Richtig!");
             setTimeout(function() { 
-                self.clear_sink();
                 if(self.next_problem()) {
                     self.freeze = false;
                 }
@@ -100,7 +101,26 @@ export default class ShopGameScene extends Scene {
                 .attr('data-dish', 'right')
                 .render();
 
-        interact('.dish').dropzone({});
+        interact(self.right_dish).dropzone({
+            ondragenter: function(e) {
+                if(self.freeze) {
+                    return;
+                }
+                e.target.classList.add('drop-target');
+            },
+            ondragleave: function(e) {
+                if(self.freeze) {
+                    return;
+                }
+                e.target.classList.remove('drop-target');
+            },
+            ondropdeactivate: function(e) {
+                if(self.freeze) {
+                    return;
+                }
+                e.target.classList.remove('drop-target');
+            }
+        });
 
         scale.adopt(create_element('div')
                 .class('lever')
@@ -117,13 +137,23 @@ export default class ShopGameScene extends Scene {
         return scale.render();
     }
 
-    empty_dishes() {
-        while(this.left_dish.firstChild) {
-            this.left_dish.removeChild(this.left_dish.firstChild);
+    reset_dishes(left_count, right_count, item_type) {
+        let self = this;
+
+        while(self.left_dish.firstChild) {
+            self.left_dish.removeChild(self.left_dish.firstChild);
         }
-        while(this.right_dish.firstChild) {
-            this.right_dish.removeChild(this.right_dish.firstChild);
+        while(self.right_dish.firstChild) {
+            self.right_dish.removeChild(self.right_dish.firstChild);
         }
+
+        range(left_count).forEach(function(i) {
+            self.left_dish.appendChild(self.create_item(item_type, true));
+        });
+
+        range(right_count).forEach(function(i) {
+            self.right_dish.appendChild(self.create_item(item_type));
+        });
     }
 
     create_source() {
@@ -134,7 +164,7 @@ export default class ShopGameScene extends Scene {
         return this.source;
     }
 
-    create_item(type) {
+    create_item(type, fixed) {
         let self = this,
             item = create_element('div')
                 .class('item')
@@ -142,7 +172,7 @@ export default class ShopGameScene extends Scene {
                 .attr('data-type', type)
                 .render();
 
-        interact(item).draggable({
+        !fixed && interact(item).draggable({
             onstart: function(e) {
                 if(self.freeze) {
                     return;
@@ -182,13 +212,21 @@ export default class ShopGameScene extends Scene {
                     let new_item = self.create_item(item.getAttribute('data-type'));
                     self.source.appendChild(new_item);
                 }
-                self.check_finish();
             }
         }).styleCursor(false);
 
         return item;
     }
 
+    create_finish_button() {
+        return create_element('button')
+                    .class('finish_button')
+                    .text("Wiegen!")
+                    .click(this.check_finish.bind(this))
+                    .render();
+    }
+
     cleanup(scene) {
+        this.problem = undefined;
     }
 }

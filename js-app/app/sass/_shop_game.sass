@@ -15,7 +15,6 @@
 .scale
     position: absolute
     left: 2.5%
-    background: cyan
     top: 20%
     height: 80%
     width: 65%
@@ -55,7 +54,50 @@
     border-bottom: 5vh solid yellow
     box-sizing: border-box
 
-.drop_target
+.dish .item
+    position: absolute
+    height: 8vh
+    width: 12vh
+
+    &:nth-child(1)
+        bottom: 0
+        left: 0.75vh
+    &:nth-child(2)
+        bottom: 0
+        left: 14.25vh
+    &:nth-child(3)
+        bottom: 0
+        left: 27.75vh
+    &:nth-child(4)
+        bottom: 0
+        left: 41.25vh
+    &:nth-child(5)
+        bottom: 8vh
+        left: 7.5vh
+    &:nth-child(6)
+        bottom: 8vh
+        left: 21vh
+    &:nth-child(7)
+        bottom: 8vh
+        left: 34.5vh
+    &:nth-child(8)
+        bottom: 16vh
+        left: 14.25vh
+    &:nth-child(9)
+        bottom: 16vh
+        left: 27.75vh
+    &:nth-child(10)
+        bottom: 24vh
+        left: 21vh
+
+    &:nth-child(n+11)
+        display: none
+
+.dish .item_apple
+    width: 10vh
+    height: 10vh
+
+.drop-target
     background: rgba(0,0,255,.1)
 
 .dish_left
@@ -68,6 +110,9 @@
     position: absolute
     left: 80%
     top: 60%
+
+.item
+    box-sizing: border-box
 
 .item_milk
     background: white
@@ -87,3 +132,9 @@
     border: 3px solid black
     width: 15vh
     height: 10vh
+
+.finish_button
+    position: absolute
+    left: 80%
+    top: 80%
+    font-size: 4em
