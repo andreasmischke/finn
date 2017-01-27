@@ -1,11 +1,11 @@
 {
-  "name": "your-app",
+  "name": "finn",
   "description": "Description",
-  "author": "Your Name",
-  "version": "0.0.1",
+  "author": "Andreas Mischke <andreas@mischke.me> (https://www.mischke.me/)",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/andreasmischke/finn.git"
   },
   "scripts": {
     "start": "brunch watch --server",

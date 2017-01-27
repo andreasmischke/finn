@@ -19,7 +19,7 @@ module.exports = {
   overrides: {
     production: {
       paths: {
-        public: '../docs/'
+        public: 'docs/'
       }
     }
   }
