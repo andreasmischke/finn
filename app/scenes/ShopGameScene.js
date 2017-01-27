@@ -159,6 +159,7 @@ export default class ShopGameScene extends Scene {
     create_source() {
         this.source = create_element('div')
                     .class('source')
+                    .class('item')
                     .attr('data-type', 'source')
                     .render();
         return this.source;
