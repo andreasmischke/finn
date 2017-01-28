@@ -1,0 +1,20 @@
+@mixin triangle($top, $right, $bottom, $left, $color)
+    @if $top > 0
+        border-top: $top solid $color
+    @else
+        border-top: -$top solid transparent
+
+    @if $right > 0
+        border-right: $right solid $color
+    @else
+        border-right: -$right solid transparent
+
+    @if $bottom > 0
+        border-bottom: $bottom solid $color
+    @else
+        border-bottom: -$bottom solid transparent
+
+    @if $left > 0
+        border-left: $left solid $color
+    @else
+        border-left: -$left solid transparent

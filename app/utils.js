@@ -73,3 +73,12 @@ export function create_element(tag) {
 export function to_array(array_like) {
     return Array.prototype.slice.call(array_like);
 }
+
+export function check_args() {
+    for(let i = 1; i < arguments.length; i++) {
+        if(arguments[i] != typeof(arguments[0][i-1])) {
+            return false;
+        }
+    }
+    return true;
+}
