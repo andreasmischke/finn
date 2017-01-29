@@ -197,8 +197,8 @@ export default class ShopGameScene extends Scene {
                     return;
                 }
                 const item = e.target,
-                    dish = e.interaction.dropElement
-                    parent = item.parentNode;
+                      dish = e.interaction.dropElement,
+                      parent = item.parentNode;
 
                 if(dish == null) {
                     parent.removeChild(item);
