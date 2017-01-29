@@ -60,6 +60,7 @@ export default class Dialog {
         this.items = [];
         this.current = 0;
         this.timeout = undefined;
+        this.draft = undefined;
     }
 
     add_bubble(name) {
@@ -70,6 +71,59 @@ export default class Dialog {
                 .render();
         this.bubbles[name] = bubble;
         return bubble;
+    }
+
+    process_draft() {
+        if(this.draft != undefined) {
+            if(this.draft.type == 'text') {
+                this.add_text.apply(this, this.draft.args);
+            } else {
+                this.add_callable.apply(this, this.draft.args);
+            }
+            this.draft = undefined;
+        }
+    }
+
+    let(name) {
+        this.process_draft();
+        this.draft = {type: 'text', args: [name, '', 0]};
+        return this;
+    }
+
+    say(text) {
+        if(this.draft == undefined) {
+            throw "Who shall say that?! Give me a name via let() first";
+        }
+        if(this.draft.type != 'text') {
+            throw "A function cannot say anything";
+        }
+        this.draft.args[1] = text;
+        return this;
+    }
+
+    do(callable) {
+        this.process_draft();
+        this.draft = {type: 'func', args: [callable, null, 0]};
+        return this;
+    }
+
+    wait(time) {
+        if(this.draft == undefined) {
+            throw "Nothing to do for that amount of time";
+        }
+        this.draft.args[2] = time;
+        return this;
+    }
+
+    then(callable) {
+        if(this.draft == undefined) {
+            throw "No draft to append this exit function to";
+        }
+        if(this.draft.type != 'func') {
+            throw "Cannot append exit function to text item";
+        }
+        this.draft.args[1] = callable;
+        return this;
     }
 
     add() {
@@ -118,14 +172,12 @@ export default class Dialog {
     }
 
     play() {
+        this.process_draft();
         const item = this.items[this.current];
         if(item !== undefined) {
             item.callable();
             this.timeout = new Timeout(this.play.bind(this), item.time);
             this.current = this.current + 1;
-            console.info("new timeout", this.timeout.toString());
-        } else {
-            console.info("no further item");
         }
         return this;
     }

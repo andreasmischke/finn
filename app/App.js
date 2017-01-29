@@ -18,7 +18,7 @@ module.exports = class App {
         app_element.appendChild(hud.init());
 
         scene_manager.register('main_menu', new MainMenuScene());
-        scene_manager.register('emil', new EmilScene());
+        scene_manager.register('emil', new EmilScene('in'));
         scene_manager.register('treehouse_game', new TreehouseGameScene());
         scene_manager.register('shop_game', new ShopGameScene());
         scene_manager.register('office_game', new OfficeGameScene());

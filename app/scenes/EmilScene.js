@@ -5,73 +5,101 @@ import Dialog from './Dialog';
 
 export default class EmilScene extends Scene {
 
+    constructor(part) {
+        super();
+        this.part = part || 'in';
+    }
+
     render(scene) {
         this.scene = scene;
 
-        this.create_dialog();
-
-        this.preload_images();
-        this.set_background('01');
+        if(this.part == 'in') {
+            this.create_in_dialog();
+            this.set_background('01');
+        } else {
+            this.create_out_dialog();
+            this.set_background('03');
+        }
 
         window.scene = this;
     }
 
-    create_dialog() {
-        const dialog = new Dialog()
-              self = this;
-
-        this.dialog = dialog;
-        this.scene.appendChild(dialog.add_bubble("emil"));
-        this.scene.appendChild(dialog.add_bubble("finn"));
-        dialog.add("finn", "Hallo Emil! Was machst du da?", 3000);
-        dialog.add("emil", "Hallo Finn! Ich baue mir ein Baumhaus. "
-                         + "Der Boden ist schon fertig!", 4000);
-        dialog.add("finn", "Wow, das sieht schon gut aus! "
-                         + "Sag mal, hast du Lucy gesehen?", 4000);
-        dialog.add("emil", "Nein, heute noch nicht. Ist sie denn weg?", 3000);
-        dialog.add("finn", "Ja, ich war vorhin mit ihr im Garten und "
-                         + "während ich kurz im Haus war, ist sie "
-                         + "verschwunden.", 5000);
-        dialog.add("emil", "Oh nein, hoffentlich findest du sie bald "
-                         + "wieder. In meinem Werkzeugkoffer ist eine "
-                         + "Taschenlampe. Ich leihe sie dir gerne aus, "
-                         + "dann kannst du Lucy auch finden, wenn sie "
-                         + "sich irgendwo versteckt hat.", 10000);
-        dialog.add(function() { self.set_background('02'); }, 1000);
-        dialog.add("finn", "Vielen Dank, ich werde gut darauf aufpassen!", 3000);
-        dialog.add("emil", "Finn, kannst du mir kurz helfen? Ich muss "
-                         + "diese Bretter festnageln, aber die Nägel sind "
-                         + "in meinem Werkzeugkoffer. Kannst du sie "
-                         + "mir geben?", 7000);
-        dialog.add("finn", "Klar, ich helfe dir gerne! Wieviele Nägel "
-                         + "brauchst du?", 4000);
-        dialog.add(function() { alert("An dieser Stelle kommt das Nägel-Suchspiel"); }, 0);
-        dialog.add(function() { self.set_background('03'); }, 0);
-        dialog.add("emil", "Super, vielen Dank! Du warst mir eine große Hilfe!", 3500);
-        dialog.add("finn", "Gern geschehen! Ich muss jetzt weiter, damit "
-                         + "ich Lucy bald wieder finde!", 4000);
-        dialog.add("emil", "Okay, viel Glück!", 2500);
-        dialog.play();
+    dialog_init() {
+        this.dialog = new Dialog();
+        this.scene.appendChild(this.dialog.add_bubble("emil"));
+        this.scene.appendChild(this.dialog.add_bubble("finn"));
+        return this.dialog;
     }
 
-    preload_images() {
-        const self = this,
-              images = [
-                  'img/emil_scene_01.png',
-                  'img/emil_scene_02.png',
-                  'img/emil_scene_03.png'
-              ];
-        self.image_cache = [];
+    create_in_dialog() {
+        const self = this;
 
-        setTimeout(function() {
-            images.forEach(function(url) {
-                const image = new Image();
-                image.src = url;
-                self.image_cache.push(image);
-            });
-        }, 0);
+        self.dialog_init()
+            .let("finn")
+            .say("Hallo Emil! Was machst du da?")
+            .wait(3000)
+
+            .let("emil")
+            .say("Hallo Finn! Ich baue mir ein Baumhaus. Der Boden ist schon fertig!")
+            .wait(4000)
+
+            .let("finn")
+            .say("Wow, das sieht schon gut aus! Sag mal, hast du Lucy gesehen?")
+            .wait(4000)
+
+            .let("emil")
+            .say("Nein, heute noch nicht. Ist sie denn weg?")
+            .wait(3000)
+
+            .let("finn")
+            .say("Ja, ich war vorhin mit ihr im Garten und während ich kurz im Haus war, ist sie verschwunden.")
+            .wait(5000)
+
+            .let("emil")
+            .say("Oh nein, hoffentlich findest du sie bald wieder. In meinem Werkzeugkoffer ist eine "
+                     + "Taschenlampe. Ich leihe sie dir gerne aus, dann kannst du Lucy auch finden, wenn sie "
+                     + "sich irgendwo versteckt hat.")
+            .wait(10000)
+
+            .do(function() { self.set_background('02'); })
+            .wait(1000)
+
+            .let("finn")
+            .say("Vielen Dank, ich werde gut darauf aufpassen!")
+            .wait(3000)
+
+            .let("emil")
+            .say("Finn, kannst du mir kurz helfen? Ich muss "
+                     + "diese Bretter festnageln, aber die Nägel sind "
+                     + "in meinem Werkzeugkoffer. Kannst du sie "
+                     + "mir geben?")
+            .wait(7000)
+
+            .let("finn")
+            .say("Klar, ich helfe dir gerne! Wieviele Nägel "
+                     + "brauchst du?")
+            .wait(4000)
+
+            .play();
     }
 
+    create_out_dialog() {
+        this.dialog_init()
+            .let("emil")
+            .say("Super, vielen Dank! Du warst mir eine große Hilfe!")
+            .wait(3500)
+
+            .let("finn")
+            .say("Gern geschehen! Ich muss jetzt weiter, damit "
+                         + "ich Lucy bald wieder finde!")
+            .wait(4000)
+
+            .let("emil")
+            .say("Okay, viel Glück!")
+            .wait(2500)
+
+            .play();
+    }
 
     set_background(number) {
         this.scene.style.setProperty('background-image', 
@@ -79,7 +107,6 @@ export default class EmilScene extends Scene {
     }
 
     cleanup(scene) {
-        console.info("doing cleanup")
         this.dialog.stop().rewind();
     }
 }
