@@ -12,7 +12,7 @@ import OfficeGameScene from './scenes/OfficeGameScene';
 module.exports = class App {
 
     constructor() {
-        let app_element = this.create_app_element();
+        const app_element = this.create_app_element();
         this.app_element = app_element;
         this.initialize_resize_listener();
         app_element.appendChild(scene_manager.get_scene_element());
@@ -36,7 +36,7 @@ module.exports = class App {
     }
 
     create_app_element() {
-        let app_element = create_element('div').class('app').render();
+        const app_element = create_element('div').class('app').render();
         document.body.appendChild(app_element);
         return app_element;
     }
@@ -62,10 +62,10 @@ module.exports = class App {
 
     resize_app() {
         this.resize_timeout_id = null;
-        let el = this.app_element,
-            w = window.innerWidth,
-            h = window.innerHeight,
-            height = w / 16 * 9;
+        const el = this.app_element,
+              w = window.innerWidth,
+              h = window.innerHeight,
+              height = w / 16 * 9;
 
         if(height < h) {
             // max width
@@ -75,7 +75,7 @@ module.exports = class App {
             el.style.left = "";
         } else {
             // max height
-            let width = h / 9 * 16;
+            const width = h / 9 * 16;
             el.style.height = "100%";
             el.style.width = width + "px";
             el.style.top = "";

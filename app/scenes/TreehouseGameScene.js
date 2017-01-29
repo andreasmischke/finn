@@ -39,7 +39,7 @@ export default class TreehouseGameScene extends Scene {
     }
 
     create_message_box() {
-        let box = create_element('div')
+        const box = create_element('div')
                 .class('message_box')
                 .render();
         this.message_box = box;
@@ -47,7 +47,7 @@ export default class TreehouseGameScene extends Scene {
     }
 
     show_message(message) {
-        let box = this.message_box;
+        const box = this.message_box;
         box.textContent = message;
         box.classList.add('active');
         clearTimeout(this.message_box_timeout);
@@ -57,7 +57,7 @@ export default class TreehouseGameScene extends Scene {
     }
 
     check_finish() {
-        let self = this,
+        const self = this,
             nail_count = self.sink.childElementCount;
 
         if(nail_count == self.problem) {
@@ -82,7 +82,7 @@ export default class TreehouseGameScene extends Scene {
     }
 
     create_toolbox() {
-        let self = this,
+        const self = this,
             box = create_element('div').class('toolbox').render();
 
         interact(box).draggable({
@@ -90,13 +90,13 @@ export default class TreehouseGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let nail = self.create_nail(),
+                const nail = self.create_nail(),
                     parentOffset = e.target.getBoundingClientRect();
 
                 e.interaction.nail = nail;
                 e.target.appendChild(nail);
 
-                let nailOffset = nail.getBoundingClientRect(),
+                const nailOffset = nail.getBoundingClientRect(),
                     left = e.x0 - parentOffset.x - nailOffset.width / 2,
                     top = e.y0 - parentOffset.y - nailOffset.height / 2;
 
@@ -107,7 +107,7 @@ export default class TreehouseGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let target = e.interaction.nail,
+                const target = e.interaction.nail,
                     x = (parseFloat(target.getAttribute("data-x")) || 0) + e.dx,
                     y = (parseFloat(target.getAttribute("data-y")) || 0) + e.dy;
 
@@ -119,19 +119,20 @@ export default class TreehouseGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let nail = e.interaction.nail,
-                    sink = e.interaction.dropElement;
+                const nail = e.interaction.nail,
+                      sink = e.interaction.dropElement;
 
                 if(sink == null) {
                     nail.parentElement.removeChild(nail);
                 } else {
-                    let sinkOffset = sink.getBoundingClientRect(),
-                        nailOffset = nail.getBoundingClientRect(),
-                        minLeft = sinkOffset.width * 0.02,
-                        minTop = sinkOffset.height * 0.02,
-                        maxLeft = (sinkOffset.width - nailOffset.width) * 0.98,
-                        maxTop = (sinkOffset.height - nailOffset.height) * 0.98,
-                        left = nailOffset.x - sinkOffset.x,
+                    const sinkOffset = sink.getBoundingClientRect(),
+                          nailOffset = nail.getBoundingClientRect(),
+                          minLeft = sinkOffset.width * 0.02,
+                          minTop = sinkOffset.height * 0.02,
+                          maxLeft = (sinkOffset.width - nailOffset.width) * 0.98,
+                          maxTop = (sinkOffset.height - nailOffset.height) * 0.98;
+
+                    let left = nailOffset.x - sinkOffset.x,
                         top = nailOffset.y - sinkOffset.y;
 
                     left = Math.max(minLeft, Math.min(left, maxLeft));
@@ -167,7 +168,7 @@ export default class TreehouseGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let target = e.target,
+                const target = e.target,
                     x = (parseFloat(target.getAttribute("data-x")) || 0) + e.dx,
                     y = (parseFloat(target.getAttribute("data-y")) || 0) + e.dy;
 
@@ -179,17 +180,18 @@ export default class TreehouseGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let nail = e.target,
-                    dropzone = e.interaction.dropElement;
+                const nail = e.target,
+                      dropzone = e.interaction.dropElement;
 
                 if(dropzone != null && dropzone.getAttribute('data-type') == 'sink') {
-                    let sinkOffset = dropzone.getBoundingClientRect(),
-                        nailOffset = nail.getBoundingClientRect(),
-                        minLeft = sinkOffset.width * 0.02,
-                        minTop = sinkOffset.height * 0.02,
-                        maxLeft = (sinkOffset.width - nailOffset.width) * 0.98,
-                        maxTop = (sinkOffset.height - nailOffset.height) * 0.98,
-                        left = nailOffset.x - sinkOffset.x,
+                    const sinkOffset = dropzone.getBoundingClientRect(),
+                          nailOffset = nail.getBoundingClientRect(),
+                          minLeft = sinkOffset.width * 0.02,
+                          minTop = sinkOffset.height * 0.02,
+                          maxLeft = (sinkOffset.width - nailOffset.width) * 0.98,
+                          maxTop = (sinkOffset.height - nailOffset.height) * 0.98;
+
+                    let left = nailOffset.x - sinkOffset.x,
                         top = nailOffset.y - sinkOffset.y;
 
                     left = Math.max(minLeft, Math.min(left, maxLeft));
@@ -208,7 +210,7 @@ export default class TreehouseGameScene extends Scene {
     }
 
     create_sink() {
-        let sink = create_element('div')
+        const sink = create_element('div')
                     .class('sink')
                     .attr('data-type', 'sink')
                     .render();

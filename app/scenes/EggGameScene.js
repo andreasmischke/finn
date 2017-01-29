@@ -11,11 +11,11 @@ export default class EggGameScene extends Scene {
 
         scene.appendChild(this.create_egg_box());
 
-        let brown_source = this.create_egg_source('brown');
+        const brown_source = this.create_egg_source('brown');
         this.create_egg(brown_source);
         scene.appendChild(brown_source);
 
-        let white_source = this.create_egg_source('white');
+        const white_source = this.create_egg_source('white');
         this.create_egg(white_source);
         scene.appendChild(white_source);
 
@@ -30,8 +30,8 @@ export default class EggGameScene extends Scene {
 
     next_problem(problem) {
         if(this.problems.length > 0) {
-            let summand1 = this.problems.pop(),
-                summand2 = 6 - summand1;
+            const summand1 = this.problems.pop(),
+                  summand2 = 6 - summand1;
             this.problem = [summand1, summand2];
             this.problem_field.textContent = `${summand1} + ${summand2} = 6`;
             return true;
@@ -44,14 +44,14 @@ export default class EggGameScene extends Scene {
     }
 
     create_message_box() {
-        let box = create_element('div')
+        const box = create_element('div')
                 .class('message_box')
                 .render();
         this.message_box = box;
         return box;
     }
     show_message(message) {
-        let box = this.message_box;
+        const box = this.message_box;
         box.textContent = message;
         box.classList.add('active');
         clearTimeout(this.message_box_timeout);
@@ -61,14 +61,14 @@ export default class EggGameScene extends Scene {
     }
 
     check_finish() {
-        let self = this,
-            [a, b] = self.problem,
-            {brown, white} = self.dimples.reduce(function(acc, dimple) {
-                if(dimple.childElementCount > 0) {
-                    acc[dimple.firstChild.getAttribute('data-color')] += 1;
-                }
-                return acc;
-            }, {white: 0, brown: 0});
+        const self = this,
+              [a, b] = self.problem,
+              {brown, white} = self.dimples.reduce(function(acc, dimple) {
+                  if(dimple.childElementCount > 0) {
+                      acc[dimple.firstChild.getAttribute('data-color')] += 1;
+                  }
+                  return acc;
+              }, {white: 0, brown: 0});
 
         if(brown + white >= 6) {
             if(a == brown && b == white || a == white && b == brown) {
@@ -87,14 +87,14 @@ export default class EggGameScene extends Scene {
     }
 
     create_egg_box() {
-        let self = this,
-            box = create_element('div')
+        const self = this,
+              box = create_element('div')
                 .class('egg_box')
                 .adopt(this.create_problem_field());
 
         this.dimples = [];
         range(6).forEach(function(i) {
-            let dimple = self.create_dimple(i);
+            const dimple = self.create_dimple(i);
             box.adopt(dimple);
             self.dimples.push(dimple);
         });
@@ -114,8 +114,8 @@ export default class EggGameScene extends Scene {
     }
 
     create_dimple(i) {
-        let self = this,
-            dimple = create_element('div')
+        const self = this,
+              dimple = create_element('div')
                 .class('egg_dimple')
                 .class('egg_dimple_' + i)
                 .render();
@@ -155,9 +155,9 @@ export default class EggGameScene extends Scene {
     }
 
     create_egg(source) {
-        let self = this,
-            color = source.getAttribute('data-color'),
-            egg = create_element('div')
+        const self = this,
+              color = source.getAttribute('data-color'),
+              egg = create_element('div')
                 .class('egg')
                 .class('egg_draggable')
                 .class(color + '_egg')
@@ -175,7 +175,7 @@ export default class EggGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let target = e.target,
+                const target = e.target,
                     x = (parseFloat(target.getAttribute("data-x")) || 0) + e.dx,
                     y = (parseFloat(target.getAttribute("data-y")) || 0) + e.dy;
 
@@ -187,8 +187,8 @@ export default class EggGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let egg = e.target,
-                    dimple = e.interaction.dropElement;
+                const egg = e.target,
+                      dimple = e.interaction.dropElement;
 
                 if(dimple == null) {
                     egg.parentNode.removeChild(egg);

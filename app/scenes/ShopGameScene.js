@@ -22,7 +22,7 @@ export default class ShopGameScene extends Scene {
     }
 
     shuffle_problems() {
-        let items = ["apple", "milk", "butter"];
+        const items = ["apple", "milk", "butter"];
 
         this.problems = shuffle(range(2, 11)).map(function(i) {
             return {
@@ -52,7 +52,7 @@ export default class ShopGameScene extends Scene {
     }
 
     create_message_box() {
-        let box = create_element('div')
+        const box = create_element('div')
                 .class('message_box')
                 .render();
         this.message_box = box;
@@ -60,7 +60,7 @@ export default class ShopGameScene extends Scene {
     }
 
     show_message(message) {
-        let box = this.message_box;
+        const box = this.message_box;
         box.textContent = message;
         box.classList.add('active');
         clearTimeout(this.message_box_timeout);
@@ -70,7 +70,7 @@ export default class ShopGameScene extends Scene {
     }
 
     check_finish() {
-        let self = this,
+        const self = this,
             {sum} = self.problem,
             right_count = self.right_dish.childElementCount;
 
@@ -88,7 +88,7 @@ export default class ShopGameScene extends Scene {
     }
 
     create_scale() {
-        let self = this,
+        const self = this,
             scale = create_element('div').class('scale');
 
         self.left_dish = create_element('div')
@@ -139,7 +139,7 @@ export default class ShopGameScene extends Scene {
     }
 
     reset_dishes(left_count, right_count, item_type) {
-        let self = this;
+        const self = this;
 
         while(self.left_dish.firstChild) {
             self.left_dish.removeChild(self.left_dish.firstChild);
@@ -167,7 +167,7 @@ export default class ShopGameScene extends Scene {
     }
 
     create_item(type, fixed) {
-        let self = this,
+        const self = this,
             item = create_element('div')
                 .class('item')
                 .class('item_' + type)
@@ -184,7 +184,7 @@ export default class ShopGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let target = e.target,
+                const target = e.target,
                     x = (parseFloat(target.getAttribute("data-x")) || 0) + e.dx,
                     y = (parseFloat(target.getAttribute("data-y")) || 0) + e.dy;
 
@@ -196,7 +196,7 @@ export default class ShopGameScene extends Scene {
                 if(self.freeze) {
                     return;
                 }
-                let item = e.target,
+                const item = e.target,
                     dish = e.interaction.dropElement
                     parent = item.parentNode;
 
@@ -211,7 +211,8 @@ export default class ShopGameScene extends Scene {
                 }
 
                 if(parent.getAttribute('data-type', 'source')) {
-                    let new_item = self.create_item(item.getAttribute('data-type'));
+                    const new_item = self.create_item(
+                            item.getAttribute('data-type'));
                     self.source.appendChild(new_item);
                 }
             }

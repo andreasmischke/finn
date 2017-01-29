@@ -18,12 +18,12 @@ function create_bag_box() {
             .render();
 };
 function create_bag() {
-    let flashlight = create_element('img')
+    const flashlight = create_element('img')
             .attr('src', 'img/flashlight.png')
             .class('bag_item')
             .render();
 
-    let catfood = create_element('img')
+    const catfood = create_element('img')
             .attr('src', 'img/catfood.png')
             .class('bag_item')
             .render();

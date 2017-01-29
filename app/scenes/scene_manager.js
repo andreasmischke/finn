@@ -5,7 +5,7 @@ var create_scene = function() {
 };
 
 var clean_scene = function() {
-    let new_scene = create_scene();
+    const new_scene = create_scene();
     scene_element.parentNode.replaceChild(new_scene, scene_element);
     scene_element = new_scene;
 };
@@ -21,7 +21,7 @@ var navigate = function(target) {
 
     if(target in scenes) {
 
-        let new_scene = scenes[target];
+        const new_scene = scenes[target];
 
         if(current_scene && current_scene.cleanup) {
             current_scene.cleanup(scene_element);

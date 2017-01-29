@@ -18,11 +18,13 @@ export function range(startOrEnd, end = null, step = 1) {
 }
 
 export function shuffle(arr) {
-    let shuffled = [],
-        array = arr.slice(0);
+    const shuffled = [],
+          array = arr.slice(0);
+
+    let rand;
 
     while(array.length > 0) {
-        let rand = Math.floor(Math.random() * array.length);
+        rand = Math.floor(Math.random() * array.length);
         shuffled.push(array.splice(rand, 1)[0]);
     }
 

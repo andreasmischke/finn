@@ -1,4 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let App = require('App');
+    const App = require('App');
     new App();
 });
