@@ -6,6 +6,7 @@ export default class MainMenuScene extends Scene {
 
     render(scene) {
         scene.appendChild(this.create_menu_button('Bei Emil', 'emil'));
+        scene.appendChild(this.create_menu_button('Bei Emma', 'emma'));
         scene.appendChild(this.create_menu_button('TreeHouse Game', 'treehouse_game'));
         scene.appendChild(this.create_menu_button('Shop Game', 'shop_game'));
         scene.appendChild(this.create_menu_button('Office Game', 'office_game'));
