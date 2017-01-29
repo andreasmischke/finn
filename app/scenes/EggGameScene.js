@@ -6,6 +6,7 @@ export default class EggGameScene extends Scene {
 
     render(scene) {
 
+        scene.classList.add('egg_game');
         scene.appendChild(this.create_message_box());
 
         scene.appendChild(this.create_egg_box());

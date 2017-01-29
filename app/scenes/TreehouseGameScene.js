@@ -7,6 +7,7 @@ export default class TreehouseGameScene extends Scene {
     render(scene) {
 
         this.scene = scene;
+        scene.classList.add('treehouse_game');
 
         scene.appendChild(this.create_message_box());
         scene.appendChild(this.create_problem_field());

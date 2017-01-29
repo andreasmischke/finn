@@ -8,7 +8,7 @@ export default class OfficeGameScene extends Scene {
     render(scene) {
         var self = this;
 
-        scene.style.backgroundImage = "url(img/officegame_bg2.jpg)";
+        scene.classList.add('office_game');
 
         let colors = ['blue', 'green', 'red'];
         let missing_folders = [];

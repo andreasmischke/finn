@@ -28,7 +28,6 @@ var navigate = function(target) {
         }
 
         clean_scene();
-        scene_element.classList.add(target);
 
         new_scene.render(scene_element);
 

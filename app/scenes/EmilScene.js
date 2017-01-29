@@ -12,6 +12,7 @@ export default class EmilScene extends Scene {
 
     render(scene) {
         this.scene = scene;
+        scene.classList.add('emil');
 
         if(this.part == 'in') {
             this.create_in_dialog();

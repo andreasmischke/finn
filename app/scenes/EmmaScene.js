@@ -12,6 +12,7 @@ export default class EmmaScene extends Scene {
 
     render(scene) {
         this.scene = scene;
+        scene.classList.add('emma');
 
         if(this.part == 'in') {
             this.create_in_dialog();
