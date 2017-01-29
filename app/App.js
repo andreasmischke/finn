@@ -2,6 +2,7 @@ import hud from 'hud';
 import {create_element} from 'utils';
 import scene_manager from './scenes/scene_manager';
 import MainMenuScene from './scenes/MainMenuScene';
+import PrefaceScene from './scenes/PrefaceScene';
 import EmilScene from './scenes/EmilScene';
 import EmmaScene from './scenes/EmmaScene';
 import TreehouseGameScene from './scenes/TreehouseGameScene';
@@ -19,8 +20,9 @@ module.exports = class App {
         app_element.appendChild(hud.init());
 
         scene_manager.register('main_menu', new MainMenuScene());
+        scene_manager.register('preface', new PrefaceScene('in'));
         scene_manager.register('emil', new EmilScene('in'));
-        scene_manager.register('emma', new EmmaScene('out'));
+        scene_manager.register('emma', new EmmaScene('in'));
         scene_manager.register('treehouse_game', new TreehouseGameScene());
         scene_manager.register('shop_game', new ShopGameScene());
         scene_manager.register('office_game', new OfficeGameScene());
