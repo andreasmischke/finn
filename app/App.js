@@ -9,6 +9,7 @@ import EmmaScene from './scenes/EmmaScene';
 import ShopGameScene from './scenes/ShopGameScene';
 import PapaScene from './scenes/PapaScene';
 import OfficeGameScene from './scenes/OfficeGameScene';
+import KarlScene from './scenes/KarlScene';
 import EggGameScene from './scenes/EggGameScene';
 
 module.exports = class App {
@@ -28,6 +29,7 @@ module.exports = class App {
         scene_manager.register('shop_game', new ShopGameScene());
         scene_manager.register('papa', new PapaScene());
         scene_manager.register('office_game', new OfficeGameScene());
+        scene_manager.register('karl', new KarlScene());
         scene_manager.register('egg_game', new EggGameScene());
 
         try {

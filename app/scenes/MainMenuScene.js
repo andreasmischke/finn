@@ -13,7 +13,7 @@ export default class MainMenuScene extends Scene {
         scene.appendChild(this.create_menu_button('Shop Game', 'shop_game'));
         scene.appendChild(this.create_menu_button('Bei Papa', 'papa'));
         scene.appendChild(this.create_menu_button('Office Game', 'office_game'));
-        scene.appendChild(this.create_button_placeholder('Bei Karl'));
+        scene.appendChild(this.create_menu_button('Bei Karl', 'karl'));
         scene.appendChild(this.create_menu_button('Egg Game', 'egg_game'));
         scene.appendChild(this.create_button_placeholder('In der Scheune'));
 
