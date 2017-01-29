@@ -1,0 +1,39 @@
+$dialog_bubble_bg: rgba(0,0,0,.75)
+
+.dialog_bubble
+    position: absolute
+    top: 3%
+    left: 55%
+    height: 35%
+    width: 30%
+    background: $dialog_bubble_bg
+    color: white
+    border-radius: 1em
+    padding: 1em
+    font-size: 4em
+    display: none
+
+    &:after
+        content: " "
+        position: absolute
+        background: none
+
+.dialog_bubble_visible
+    display: block
+
+.dialog_bubble_papa
+    color: lightgreen
+
+    &:after
+        top: 10%
+        right: 100%
+        @include triangle(-1em, 1em, 1em, -1em, $dialog_bubble_bg)
+
+.dialog_bubble_finn
+    color: fuchsia
+
+    &:after
+        top: 100%
+        left: 70%
+        @include triangle(1.5em, -1em, -1.5em, 1em, $dialog_bubble_bg)
+

@@ -4,11 +4,12 @@ import scene_manager from './scenes/scene_manager';
 import MainMenuScene from './scenes/MainMenuScene';
 import PrefaceScene from './scenes/PrefaceScene';
 import EmilScene from './scenes/EmilScene';
-import EmmaScene from './scenes/EmmaScene';
 import TreehouseGameScene from './scenes/TreehouseGameScene';
+import EmmaScene from './scenes/EmmaScene';
 import ShopGameScene from './scenes/ShopGameScene';
-import EggGameScene from './scenes/EggGameScene';
+import PapaScene from './scenes/PapaScene';
 import OfficeGameScene from './scenes/OfficeGameScene';
+import EggGameScene from './scenes/EggGameScene';
 
 module.exports = class App {
 
@@ -25,6 +26,7 @@ module.exports = class App {
         scene_manager.register('emma', new EmmaScene('in'));
         scene_manager.register('treehouse_game', new TreehouseGameScene());
         scene_manager.register('shop_game', new ShopGameScene());
+        scene_manager.register('papa', new PapaScene());
         scene_manager.register('office_game', new OfficeGameScene());
         scene_manager.register('egg_game', new EggGameScene());
 
