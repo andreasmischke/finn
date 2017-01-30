@@ -23,8 +23,9 @@ class App {
         this.initialize_resize_listener();
 
         try {
-            const scene = require('./scenes/' + location.search.substr(1));
-            scene_manager.navigate(new scene.default());
+            const query = location.search.substr(1).split("/");
+            const scene = require('./scenes/' + query[0]);
+            scene_manager.navigate(new scene.default(...query.slice(1)));
         } catch(e) {
             scene_manager.navigate(new MainMenuScene());
         }

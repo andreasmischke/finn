@@ -23,6 +23,18 @@ export default class SceneManager {
         this.scene_element = new_scene;
     }
 
+    pushState(scene) {
+        if(!history.pushState) {
+            return;
+        }
+        let queryString = "?" + scene.constructor.name;
+        if(scene.part) {
+            queryString += "/" + scene.part;
+        }
+
+        history.pushState(null, "Finns Zahlenabenteuer", queryString);
+    }
+
     navigate(scene) {
         if(!scene || !scene.render || !scene.cleanup) {
             throw `${scene} is not a scene`;
@@ -33,6 +45,7 @@ export default class SceneManager {
         scene.render(this.scene_element);
 
         this.current_scene = scene;
+        this.pushState(scene);
         window.scene = scene;
     }
 
