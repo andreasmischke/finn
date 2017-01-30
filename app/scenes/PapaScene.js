@@ -68,7 +68,7 @@ export default class PapaScene extends Scene {
             .let('papa')
             .say('Hm… Das letzte Mal, als wir Lucy suchen mussten, war sie '
                     + 'drüben auf Karls Hühnerhof. Hast du dort schon gesucht?')
-            .wait(6000)
+            .wait(7000)
 
             .let('finn')
             .say('Das ist eine gute Idee, da war ich noch nicht.')

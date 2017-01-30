@@ -39,11 +39,11 @@ export default class KarlScene extends Scene {
             .let('karl')
             .say('Hallo Finn! Na, magst du mir wieder beim Eier einpacken '
                     + 'helfen?')
-            .wait(60000)
+            .wait(6000)
 
             .let('finn')
             .say('Hallo Karl! Sehr gerne!')
-            .wait(2000)
+            .wait(3000)
 
             .do(x => this.story && this.story.next());
     }
@@ -68,7 +68,7 @@ export default class KarlScene extends Scene {
             .say('Nein, aber ich war auch den ganzen Tag mit dem Traktor '
                     + 'auf dem Feld. Aber sieh doch mal in der Scheune nach. '
                     + 'Da war sie ja schon öfters.')
-            .wait(6000)
+            .wait(7500)
 
             .do(x => this.story && this.story.next());
     }
