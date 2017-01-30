@@ -1,0 +1,62 @@
+$dialog_bubble_bg: rgba(0,0,0,.75)
+
+&
+    background-color: #111
+
+.image
+    position: absolute
+    width: 100%
+    height: 100%
+    background-image: url(img/barn.png)
+    background-size: contain
+    z-index: 2
+
+.light
+    position: absolute
+    left: 40%
+    top: 40%
+    width: 30em
+    height: 30em
+    border-radius: 50%
+    background: #ff7
+    z-index: 1
+    box-shadow: 0 0 5em 5em #ff7
+
+.light_handle
+    position: absolute
+    left: 40%
+    top: 40%
+    width: 30em
+    height: 30em
+    border-radius: 100%
+    z-index: 3
+
+.dialog_bubble
+    position: absolute
+    top: 60%
+    left: 60%
+    height: 20%
+    width: 35%
+    background: $dialog_bubble_bg
+    color: white
+    border-radius: 1em
+    padding: 1em
+    font-size: 4em
+    display: none
+    z-index: 4
+
+.dialog_bubble_visible
+    display: block
+
+.dialog_bubble_finn1,
+.dialog_bubble_finn2
+    color: fuchsia
+
+
+.cat_target
+    position: absolute
+    left: 32%
+    top: 44%
+    border: 1px solid orange
+    background: rgba(255,0,0,.5)
+    z-index: 15
