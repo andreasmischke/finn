@@ -21,7 +21,7 @@ export default class EmilScene extends Scene {
             this.set_background('03');
         }
 
-        window.scene = this;
+        this.dialog.play();
     }
 
     dialog_init() {
@@ -32,9 +32,10 @@ export default class EmilScene extends Scene {
     }
 
     create_in_dialog() {
-        const self = this;
+        this.dialog_init()
+            .do(function() {})
+            .wait(1000)
 
-        self.dialog_init()
             .let("finn")
             .say("Hallo Emil! Was machst du da?")
             .wait(3000)
@@ -61,7 +62,7 @@ export default class EmilScene extends Scene {
                      + "sich irgendwo versteckt hat.")
             .wait(10000)
 
-            .do(function() { self.set_background('02'); })
+            .do(x => this.set_background('02'))
             .wait(1000)
 
             .let("finn")
@@ -80,7 +81,7 @@ export default class EmilScene extends Scene {
                      + "brauchst du?")
             .wait(4000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     create_out_dialog() {
@@ -98,7 +99,7 @@ export default class EmilScene extends Scene {
             .say("Okay, viel Glück!")
             .wait(2500)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     set_background(number) {
@@ -107,6 +108,6 @@ export default class EmilScene extends Scene {
     }
 
     cleanup(scene) {
-        this.dialog.stop().rewind();
+        this.dialog && this.dialog.stop();
     }
 }

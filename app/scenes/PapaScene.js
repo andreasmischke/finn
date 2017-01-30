@@ -21,7 +21,7 @@ export default class PapaScene extends Scene {
             this.set_background('03');
         }
 
-        window.scene = this;
+        this.dialog.play();
     }
 
     dialog_init() {
@@ -47,13 +47,11 @@ export default class PapaScene extends Scene {
             .say('Ja, das kann ich gut!')
             .wait(3000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     create_out_dialog() {
-        const self = this;
-
-        self.dialog_init()
+        this.dialog_init()
             .let('finn')
             .say('Jetzt ist alles wieder aufgeräumt!')
             .wait(3000)
@@ -84,7 +82,7 @@ export default class PapaScene extends Scene {
             .say('Okay, tschüss!')
             .wait(2000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     set_background(number) {
@@ -93,6 +91,6 @@ export default class PapaScene extends Scene {
     }
 
     cleanup(scene) {
-        this.dialog && this.dialog.stop().rewind();
+        this.dialog && this.dialog.stop();
     }
 }

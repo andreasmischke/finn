@@ -24,7 +24,7 @@ export default class KarlScene extends Scene {
             this.set_background('03');
         }
 
-        window.scene = this;
+        this.dialog.play();
     }
 
     dialog_init() {
@@ -45,13 +45,11 @@ export default class KarlScene extends Scene {
             .say('Hallo Karl! Sehr gerne!')
             .wait(2000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     create_mid_dialog() {
-        const self = this;
-
-        self.dialog_init()
+        this.dialog_init()
             .let('karl')
             .say('Gute Arbeit, Finn! Dann kann ich morgen früh direkt auf den '
                     + 'Markt fahren und die Eier verkaufen!')
@@ -72,13 +70,11 @@ export default class KarlScene extends Scene {
                     + 'Da war sie ja schon öfters.')
             .wait(6000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     create_out_dialog() {
-        const self = this;
-
-        self.dialog_init()
+        this.dialog_init()
             .let('finn')
             .say('Schau mal, Karl! ich habe Lucy wieder gefunden!')
             .wait(4000)
@@ -94,7 +90,7 @@ export default class KarlScene extends Scene {
                     + 'Laden helfen oder Papas Ordner einsortieren!')
             .wait(10000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     set_background(number) {

@@ -8,16 +8,21 @@ export default class PrefaceScene extends Scene {
         this.scene = scene;
         scene.classList.add('preface');
 
-        this.create_in_dialog();
+        this.create_dialog();
         this.set_background('01');
-        window.scene = this;
+
+        this.dialog.play();
     }
 
-    create_in_dialog() {
+    create_dialog() {
+        const self = this;
         this.dialog = new Dialog();
         this.scene.appendChild(this.dialog.add_bubble("finn"));
         this.scene.appendChild(this.dialog.add_bubble("narrator"));
         this.dialog
+            .do(function() {})
+            .wait(1000)
+
             .let('narrator')
             .say('Hallo Finn, was ist denn los? Warum bist du so traurig?')
             .wait(60000)
@@ -49,14 +54,14 @@ export default class PrefaceScene extends Scene {
             .wait(60000)
 
             .do(function() { })
-            .wait(3000)
+            .wait(1500)
 
             .let('finn')
             .say('Am besten gehen wir zuerst zu meinem Freund Emil, '
                     + 'vielleicht hat er sie gesehen.')
             .wait(60000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     set_background(number) {
@@ -65,6 +70,6 @@ export default class PrefaceScene extends Scene {
     }
 
     cleanup(scene) {
-        this.dialog && this.dialog.stop().rewind();
+        this.dialog && this.dialog.stop();
     }
 }

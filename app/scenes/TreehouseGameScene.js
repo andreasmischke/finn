@@ -33,7 +33,13 @@ export default class TreehouseGameScene extends Scene {
         } else {
             this.problem = undefined;
             this.problem_field.textContent = "";
-            this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+
+            if(this.story) {
+                this.finish_timeout = setTimeout(x => this.story.next(), 1000);
+            } else {
+                this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+            }
+
             return false;
         }
     }
@@ -57,20 +63,19 @@ export default class TreehouseGameScene extends Scene {
     }
 
     check_finish() {
-        const self = this,
-            nail_count = self.sink.childElementCount;
+        const nail_count = this.sink.childElementCount;
 
-        if(nail_count == self.problem) {
-            self.freeze = true;
-            self.show_message("Richtig!");
-            setTimeout(function() { 
-                self.clear_sink();
-                if(self.next_problem()) {
-                    self.freeze = false;
+        if(nail_count == this.problem) {
+            this.freeze = true;
+            this.show_message("Richtig!");
+            setTimeout(x => { 
+                this.clear_sink();
+                if(this.next_problem()) {
+                    this.freeze = false;
                 }
             }, 3000);
         } else {
-            self.show_message("Leider falsch. Schau nochmal genau hin!");
+            this.show_message("Leider falsch. Schau nochmal genau hin!");
         }
     }
 
@@ -83,7 +88,7 @@ export default class TreehouseGameScene extends Scene {
 
     create_toolbox() {
         const self = this,
-            box = create_element('div').class('toolbox').render();
+              box = create_element('div').class('toolbox').render();
 
         interact(box).draggable({
             onstart: function(e) {
@@ -237,5 +242,8 @@ export default class TreehouseGameScene extends Scene {
     }
 
     cleanup(scene) {
+        if(this.finish_timeout !== undefined) {
+            clearTimeout(this.finish_timeout);
+        }
     }
 }

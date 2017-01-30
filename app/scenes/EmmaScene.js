@@ -21,7 +21,7 @@ export default class EmmaScene extends Scene {
             this.set_background('03');
         }
 
-        window.scene = this;
+        this.dialog.play();
     }
 
     dialog_init() {
@@ -42,13 +42,11 @@ export default class EmmaScene extends Scene {
             .say('Oh ja, das mach ich gerne!')
             .wait(3000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     create_out_dialog() {
-        const self = this;
-
-        self.dialog_init()
+        this.dialog_init()
             .let('emma')
             .say('Vielen Dank, Finn! Das hast du super gemacht!')
             .wait(3000)
@@ -64,14 +62,14 @@ export default class EmmaScene extends Scene {
                     + 'Viel Glück bei deiner Suche!')
             .wait(8000)
 
-            .do(function() { self.set_background('02'); })
+            .do(x => this.set_background('02'))
             .wait(1000)
 
             .let('finn')
             .say('Danke!')
             .wait(2000)
 
-            .play();
+            .do(x => this.story && this.story.next());
     }
 
     set_background(number) {

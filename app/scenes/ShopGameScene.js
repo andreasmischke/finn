@@ -46,7 +46,13 @@ export default class ShopGameScene extends Scene {
             return true;
         } else {
             this.problem = undefined;
-            this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+
+            if(this.story) {
+                this.finish_timeout = setTimeout(x => self.story.next(), 1000);
+            } else {
+                this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+            }
+
             return false;
         }
     }

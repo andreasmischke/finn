@@ -38,7 +38,13 @@ export default class EggGameScene extends Scene {
         } else {
             this.problem = undefined;
             this.problem_field.textContent = "";
-            this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+
+            if(this.story) {
+                this.finish_timeout = setTimeout(x => this.story.next(), 1000);
+            } else {
+                this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+            }
+
             return false;
         }
     }
