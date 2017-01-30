@@ -12,7 +12,7 @@ var clean_scene = function() {
 
 var register = function(name, scene) {
     if(!scene || !scene.render || !scene.cleanup) {
-        thorw `${scene} is not a scene`;
+        throw `${scene} is not a scene`;
     }
     scenes[name] = scene;
 };
