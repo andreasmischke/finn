@@ -1,5 +1,6 @@
 import hud from 'hud';
 import {create_element} from 'utils';
+import Story from 'Story';
 import scene_manager from './scenes/scene_manager';
 import MainMenuScene from './scenes/MainMenuScene';
 import PrefaceScene from './scenes/PrefaceScene';
@@ -39,6 +40,26 @@ class App {
         }
 
         console.log('initialized');
+    }
+
+    create_story() {
+        this.story = new Story();
+        this.story
+            .add(new PrefaceScene())
+            .add(new EmilScene('in'))
+            .add(new TreehouseGameScene())
+            .add(new EmilScene('out'))
+            .add(new EmmaScene('in'))
+            .add(new ShopGameScene())
+            .add(new EmmaScene('out'))
+            .add(new PapaScene('in'))
+            .add(new OfficeGameScene())
+            .add(new PapaScene('out'))
+            .add(new KarlScene('in'))
+            .add(new EggGameScene())
+            .add(new KarlScene('mid'))
+            // .add(new BarnScene())
+            .add(new KarlScene('out'));
     }
 
     create_app_element() {
