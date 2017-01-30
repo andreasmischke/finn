@@ -1,13 +1,12 @@
 import {create_element} from 'utils';
-import scene_manager from './scenes/scene_manager';
+import MainMenuScene from './scenes/MainMenuScene';
+import scene_manager from './scenes/SceneManager';
 
 function create_main_menu_button() {
     return create_element('img')
             .attr('src', 'img/home_button.png')
             .class('hud_mainmenu')
-            .click(function(e) {
-                scene_manager.navigate('main_menu');
-            })
+            .click(e => scene_manager.navigate(new MainMenuScene()))
             .render();
 };
 function create_bag_box() {

@@ -1,5 +1,4 @@
 import {create_element} from '../utils';
-import scene_manager from './scene_manager';
 import Scene from './Scene';
 import Dialog from './Dialog';
 

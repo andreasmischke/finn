@@ -1,7 +1,7 @@
 import hud from 'hud';
 import {create_element} from 'utils';
 import Story from 'Story';
-import scene_manager from './scenes/scene_manager';
+import scene_manager from './scenes/SceneManager';
 import MainMenuScene from './scenes/MainMenuScene';
 import PrefaceScene from './scenes/PrefaceScene';
 import EmilScene from './scenes/EmilScene';
@@ -16,27 +16,18 @@ import EggGameScene from './scenes/EggGameScene';
 class App {
 
     constructor() {
-        const app_element = this.create_app_element();
-        this.app_element = app_element;
-        this.initialize_resize_listener();
-        app_element.appendChild(scene_manager.get_scene_element());
-        app_element.appendChild(hud.init());
+        this.app_element = this.create_app_element();
 
-        scene_manager.register('main_menu', new MainMenuScene());
-        scene_manager.register('preface', new PrefaceScene('in'));
-        scene_manager.register('emil', new EmilScene('in'));
-        scene_manager.register('emma', new EmmaScene('in'));
-        scene_manager.register('treehouse_game', new TreehouseGameScene());
-        scene_manager.register('shop_game', new ShopGameScene());
-        scene_manager.register('papa', new PapaScene());
-        scene_manager.register('office_game', new OfficeGameScene());
-        scene_manager.register('karl', new KarlScene());
-        scene_manager.register('egg_game', new EggGameScene());
+        this.app_element.appendChild(scene_manager.get_scene_element());
+        this.app_element.appendChild(hud.init());
+
+        this.initialize_resize_listener();
 
         try {
-            scene_manager.navigate(location.search.substr(1));
+            const scene = require('./scenes/' + location.search.substr(1));
+            scene_manager.navigate(new scene.default());
         } catch(e) {
-            scene_manager.navigate('main_menu');
+            scene_manager.navigate(new MainMenuScene());
         }
 
         console.log('initialized');
