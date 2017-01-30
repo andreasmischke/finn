@@ -78,6 +78,6 @@ export default class EmmaScene extends Scene {
     }
 
     cleanup(scene) {
-        this.dialog && this.dialog.stop().rewind();
+        this.dialog && this.dialog.stop();
     }
 }

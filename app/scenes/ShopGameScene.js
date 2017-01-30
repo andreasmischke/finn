@@ -48,7 +48,7 @@ export default class ShopGameScene extends Scene {
             this.problem = undefined;
 
             if(this.story) {
-                this.finish_timeout = setTimeout(x => self.story.next(), 1000);
+                this.finish_timeout = setTimeout(x => this.story.next(), 1000);
             } else {
                 this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
             }

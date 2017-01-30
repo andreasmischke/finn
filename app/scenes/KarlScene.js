@@ -16,7 +16,7 @@ export default class KarlScene extends Scene {
         if(this.part == 'in') {
             this.create_in_dialog();
             this.set_background('01');
-        } else if(this.parte == 'mid') {
+        } else if(this.part == 'mid') {
             this.create_mid_dialog();
             this.set_background('02');
         } else {
@@ -99,6 +99,6 @@ export default class KarlScene extends Scene {
     }
 
     cleanup(scene) {
-        this.dialog && this.dialog.stop().rewind();
+        this.dialog && this.dialog.stop();
     }
 }

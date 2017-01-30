@@ -124,12 +124,9 @@ export default class OfficeGameScene extends Scene {
                   }, 0);
 
             if(correct_count == 9) {
-                const self = this;
-                if(self.story) {
+                if(this.story) {
                     this.showMessage("Sehr gut!!");
-                    this.finish_timeout = setTimeout(function() {
-                        self.story.next();
-                    }, 3000);
+                    this.finish_timeout = setTimeout(x => this.story.next(), 3000);
                 } else {
                     this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
                 }

@@ -1,4 +1,5 @@
 import scene_manager from './scenes/SceneManager';
+import MainMenuScene from './scenes/MainMenuScene';
 import PrefaceScene from './scenes/PrefaceScene';
 import EmilScene from './scenes/EmilScene';
 import EmmaScene from './scenes/EmmaScene';
@@ -25,13 +26,17 @@ class Story {
     }
 
     next() {
-        try {
-            throw new Error('story.next');
-        } catch(e) {
-            console.error(e);
-        }
         this.current_scene = this.current_scene + 1;
-        this.play();
+        if(this.current_scene < this.scenes.length) {
+            this.play();
+        } else {
+            this.stop();
+        }
+    }
+
+    stop() {
+        this.rewind();
+        scene_manager.navigate(new MainMenuScene());
     }
 
     play() {
