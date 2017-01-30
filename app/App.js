@@ -12,7 +12,7 @@ import OfficeGameScene from './scenes/OfficeGameScene';
 import KarlScene from './scenes/KarlScene';
 import EggGameScene from './scenes/EggGameScene';
 
-module.exports = class App {
+class App {
 
     constructor() {
         const app_element = this.create_app_element();
@@ -91,3 +91,6 @@ module.exports = class App {
     }
 
 }
+
+const app = new App();
+module.exports = app;
