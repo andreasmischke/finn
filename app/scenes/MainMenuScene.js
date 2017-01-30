@@ -1,5 +1,6 @@
 import {create_element} from '../utils';
 import Scene from './Scene';
+import story from 'Story';
 import scene_manager from './SceneManager';
 import PrefaceScene from './PrefaceScene';
 import EmilScene from './EmilScene';
@@ -17,6 +18,7 @@ export default class MainMenuScene extends Scene {
         this.scene = scene;
         scene.classList.add('main_menu');
 
+        this.create_story_button();
         this.create_menu_button('Eingangsszene', PrefaceScene);
         this.create_menu_button('Bei Emil - Teil 1', EmilScene, 'in');
         this.create_menu_button('Baumhaus-Spiel', TreehouseGameScene);
@@ -32,6 +34,14 @@ export default class MainMenuScene extends Scene {
         this.create_menu_button('Bei Karl - Teil 2', KarlScene, 'mid');
         this.create_button_placeholder('In der Scheune');
         this.create_menu_button('Bei Karl - Teil 3', KarlScene, 'out');
+    }
+
+    create_story_button() {
+        this.scene.appendChild(create_element('div')
+            .class('menu_button')
+            .click(e => story.next())
+            .text("Story")
+            .render());
     }
 
     create_button_placeholder(text) {
