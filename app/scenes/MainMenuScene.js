@@ -51,10 +51,10 @@ export default class MainMenuScene extends Scene {
             .render());
     }
 
-    create_menu_button(text, target) {
+    create_menu_button(text, target, ...args) {
         this.scene.appendChild(create_element('div')
             .class('menu_button')
-            .click(e => scene_manager.navigate(new target()))
+            .click(e => scene_manager.navigate(new target(...args)))
             .text(text)
             .render());
     }
