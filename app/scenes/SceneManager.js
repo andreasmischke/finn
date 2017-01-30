@@ -33,6 +33,7 @@ export default class SceneManager {
         scene.render(this.scene_element);
 
         this.current_scene = scene;
+        window.scene = scene;
     }
 
     get_scene_element() {
@@ -41,4 +42,6 @@ export default class SceneManager {
 }
 
 const scene_manager = new SceneManager();
+window.navigate = scene_manager.navigate;
+
 module.exports = scene_manager;

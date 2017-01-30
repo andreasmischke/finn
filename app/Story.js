@@ -20,7 +20,21 @@ class Story {
         return this;
     }
 
+    rewind() {
+        this.current_scene = 0;
+    }
+
     next() {
+        try {
+            throw new Error('story.next');
+        } catch(e) {
+            console.error(e);
+        }
+        this.current_scene = this.current_scene + 1;
+        this.play();
+    }
+
+    play() {
         if(this.current_scene >= this.scenes.length) {
             return;
         }
@@ -29,8 +43,6 @@ class Story {
 
         scene.enable_story_mode(this);
         scene_manager.navigate(scene);
-
-        this.current_scene = this.current_scene + 1;
     }
 }
 
@@ -50,5 +62,7 @@ story.add(PrefaceScene)
      .add(KarlScene, 'mid')
      // .add(BarnScene)
      .add(KarlScene, 'out');
+
+window.skip = story.next.bind(story);
 
 module.exports = story;

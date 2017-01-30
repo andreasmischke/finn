@@ -39,7 +39,7 @@ export default class MainMenuScene extends Scene {
     create_story_button() {
         this.scene.appendChild(create_element('div')
             .class('menu_button')
-            .click(e => story.next())
+            .click(e => story.play())
             .text("Story")
             .render());
     }
