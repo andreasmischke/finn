@@ -65,6 +65,10 @@ export default class TreehouseGameScene extends Scene {
     check_finish() {
         const nail_count = this.sink.childElementCount;
 
+        if(this.freeze) {
+            return;
+        }
+
         if(nail_count == this.problem) {
             this.freeze = true;
             this.show_message("Richtig!");

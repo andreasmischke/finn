@@ -76,6 +76,10 @@ export default class ShopGameScene extends Scene {
     }
 
     check_finish() {
+        if(this.freeze) {
+            return;
+        }
+
         const self = this,
             {sum} = self.problem,
             right_count = self.right_dish.childElementCount;
