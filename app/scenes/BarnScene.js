@@ -100,10 +100,10 @@ export default class BarnScene extends Scene {
                       t = self.cat_target.getBoundingClientRect(),
                       h = handle.getBoundingClientRect(),
                       radius = h.width/2,
-                      midx = radius + h.x,
-                      midy = radius + h.y,
-                      distanceX = Math.abs(midx - t.x),
-                      distanceY = Math.abs(midy - t.y),
+                      midx = radius + h.left,
+                      midy = radius + h.top,
+                      distanceX = Math.abs(midx - t.left),
+                      distanceY = Math.abs(midy - t.top),
                       distance = Math.sqrt(Math.pow(distanceX, 2),
                                            Math.pow(distanceY, 2));
 

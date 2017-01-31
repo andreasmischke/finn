@@ -84,11 +84,8 @@ export default class OfficeGameScene extends Scene {
             },
             ondrop: function(e) {
                 const space = e.target,
-                      { x, y } = space.getBoundingClientRect(),
                       folder = e.relatedTarget;
 
-                folder.style.top = y + "px";
-                folder.style.left = x + "px";
                 folder.style.transform = '';
 
                 if(space.childElementCount > 0) {

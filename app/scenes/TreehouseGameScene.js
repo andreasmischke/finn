@@ -106,8 +106,8 @@ export default class TreehouseGameScene extends Scene {
                 e.target.appendChild(nail);
 
                 const nailOffset = nail.getBoundingClientRect(),
-                    left = e.x0 - parentOffset.x - nailOffset.width / 2,
-                    top = e.y0 - parentOffset.y - nailOffset.height / 2;
+                    left = e.x0 - parentOffset.left - nailOffset.width / 2,
+                    top = e.y0 - parentOffset.top - nailOffset.height / 2;
 
                 nail.style.setProperty("left", left + "px");
                 nail.style.setProperty("top", top + "px");
@@ -141,8 +141,8 @@ export default class TreehouseGameScene extends Scene {
                           maxLeft = (sinkOffset.width - nailOffset.width) * 0.98,
                           maxTop = (sinkOffset.height - nailOffset.height) * 0.98;
 
-                    let left = nailOffset.x - sinkOffset.x,
-                        top = nailOffset.y - sinkOffset.y;
+                    let left = nailOffset.left - sinkOffset.left,
+                        top = nailOffset.top - sinkOffset.top;
 
                     left = Math.max(minLeft, Math.min(left, maxLeft));
                     top = Math.max(minTop, Math.min(top, maxTop));
@@ -200,8 +200,8 @@ export default class TreehouseGameScene extends Scene {
                           maxLeft = (sinkOffset.width - nailOffset.width) * 0.98,
                           maxTop = (sinkOffset.height - nailOffset.height) * 0.98;
 
-                    let left = nailOffset.x - sinkOffset.x,
-                        top = nailOffset.y - sinkOffset.y;
+                    let left = nailOffset.left - sinkOffset.left,
+                        top = nailOffset.top - sinkOffset.top;
 
                     left = Math.max(minLeft, Math.min(left, maxLeft));
                     top = Math.max(minTop, Math.min(top, maxTop));
