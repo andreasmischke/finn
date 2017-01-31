@@ -18,6 +18,7 @@ module.exports = {
   },
   overrides: {
     production: {
+      sourceMaps: true,
       paths: {
         public: 'docs/'
       }
