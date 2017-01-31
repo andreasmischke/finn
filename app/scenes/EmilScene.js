@@ -32,6 +32,7 @@ export default class EmilScene extends Scene {
     }
 
     create_in_dialog() {
+        const hud = require('../hud');
         this.dialog_init()
             .do(function() {})
             .wait(1000)
@@ -62,8 +63,11 @@ export default class EmilScene extends Scene {
                      + "sich irgendwo versteckt hat.")
             .wait(10000)
 
-            .do(x => this.set_background('02'))
-            .wait(1000)
+            .do(this.set_background.bind(this, '02'))
+            .wait(100)
+
+            .do(hud.add_flashlight.bind(hud))
+            .wait(900)
 
             .let("finn")
             .say("Vielen Dank, ich werde gut darauf aufpassen!")

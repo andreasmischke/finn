@@ -43,14 +43,13 @@ export default class MainMenuScene extends Scene {
         section.adopt(create_element('div')
             .class('heading')
             .class('heading_story')
-            .click(e => story.play())
             .text("Geschichte spielen")
             .render());
 
         section.adopt(create_element('div')
             .class('btn')
             .class('btn_play_story')
-            .click(e => story.play())
+            .click(e => story.start())
             .text("Von vorne starten")
             .render());
 

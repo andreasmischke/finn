@@ -23,6 +23,7 @@ class Story {
     }
 
     rewind() {
+        require('hud').empty_bag();
         this.current_scene = 0;
     }
 
@@ -38,6 +39,11 @@ class Story {
     stop() {
         this.rewind();
         scene_manager.navigate(new MainMenuScene());
+    }
+
+    start() {
+        this.rewind();
+        this.play();
     }
 
     play() {

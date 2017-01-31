@@ -46,6 +46,7 @@ export default class EmmaScene extends Scene {
     }
 
     create_out_dialog() {
+        const hud = require('../hud');
         this.dialog_init()
             .let('emma')
             .say('Vielen Dank, Finn! Das hast du super gemacht!')
@@ -62,7 +63,7 @@ export default class EmmaScene extends Scene {
                     + 'Viel Glück bei deiner Suche!')
             .wait(8000)
 
-            .do(x => this.set_background('02'))
+            .do(hud.add_catfood.bind(hud))
             .wait(1000)
 
             .let('finn')
