@@ -210,7 +210,7 @@ export default class ShopGameScene extends Scene {
                       dish = e.interaction.dropElement,
                       parent = item.parentNode;
 
-                if(dish == null) {
+                if(dish == null || dish.childElementCount >= 10) {
                     parent.removeChild(item);
                 } else {
                     item.removeAttribute('data-x');

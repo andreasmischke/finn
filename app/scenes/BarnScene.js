@@ -104,8 +104,9 @@ export default class BarnScene extends Scene {
                       midy = radius + h.top,
                       distanceX = Math.abs(midx - t.left),
                       distanceY = Math.abs(midy - t.top),
-                      distance = Math.sqrt(Math.pow(distanceX, 2),
-                                           Math.pow(distanceY, 2));
+                      distanceXsq = Math.pow(distanceX, 2),
+                      distanceYsq = Math.pow(distanceY, 2),
+                      distance = Math.sqrt(distanceXsq + distanceYsq);
 
                 if(distance < radius * 0.8) {
                     self.freeze = true;
