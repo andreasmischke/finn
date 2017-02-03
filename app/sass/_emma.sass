@@ -28,7 +28,7 @@ $dialog_bubble_bg: rgba(0,0,0,.75)
     color: lightgreen
 
     &:after
-        top: -3em
+        bottom: 100%
         left: 70%
         @include triangle(-1.5em, 1em, 1.5em, -1em, $dialog_bubble_bg)
 
@@ -36,6 +36,6 @@ $dialog_bubble_bg: rgba(0,0,0,.75)
     color: fuchsia
 
     &:after
-        top: 10%
+        top: 25%
         right: 100%
-        @include triangle(-1em, 1em, 1em, -1em, $dialog_bubble_bg)
+        @include triangle(1em, 1em, -1em, -1em, $dialog_bubble_bg)

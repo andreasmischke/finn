@@ -10,6 +10,7 @@ import OfficeGameScene from './scenes/OfficeGameScene';
 import KarlScene from './scenes/KarlScene';
 import EggGameScene from './scenes/EggGameScene';
 import BarnScene from './scenes/BarnScene';
+import FinaleScene from './scenes/FinaleScene';
 
 class Story {
     constructor() {
@@ -73,7 +74,7 @@ story.add(PrefaceScene)
      .add(EggGameScene)
      .add(KarlScene, 'mid')
      .add(BarnScene)
-     .add(KarlScene, 'out');
+     .add(FinaleScene);
 
 window.skip = story.next.bind(story);
 

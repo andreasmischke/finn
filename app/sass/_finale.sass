@@ -1,12 +1,12 @@
 $dialog_bubble_bg: rgba(0,0,0,.75)
 
 &
-    background-image: url(img/office_bg.png)
+    background-image: url(img/finale_bg.png)
 
 .dialog_bubble
     position: absolute
-    top: 50%
-    left: 35%
+    top: 3%
+    left: 55%
     height: 35%
     width: 30%
     background: $dialog_bubble_bg
@@ -24,19 +24,11 @@ $dialog_bubble_bg: rgba(0,0,0,.75)
 .dialog_bubble_visible
     display: block
 
-.dialog_bubble_papa
-    color: lightgreen
-
-    &:after
-        top: -2.9em
-        left: 15%
-        @include triangle(-1.5em, -1em, 1.5em, 1em, $dialog_bubble_bg)
-
 .dialog_bubble_finn
     color: fuchsia
 
     &:after
-        top: 30%
-        left: 100%
-        @include triangle(1em, -1em, -1em, 1em, $dialog_bubble_bg)
+        top: 70%
+        right: 100%
+        @include triangle(-0, -0, 1.5em, -2.5em, $dialog_bubble_bg)
 

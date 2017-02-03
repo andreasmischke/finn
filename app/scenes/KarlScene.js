@@ -15,8 +15,6 @@ export default class KarlScene extends Scene {
 
         if(this.part == 'in') {
             this.create_in_dialog();
-        } else if(this.part == 'mid') {
-            this.create_mid_dialog();
         } else {
             this.create_out_dialog();
         }
@@ -45,7 +43,7 @@ export default class KarlScene extends Scene {
             .do(x => this.story && this.story.next());
     }
 
-    create_mid_dialog() {
+    create_out_dialog() {
         this.dialog_init()
             .let('karl')
             .say('Gute Arbeit, Finn! Dann kann ich morgen früh direkt auf den '
@@ -66,26 +64,6 @@ export default class KarlScene extends Scene {
                     + 'auf dem Feld. Aber sieh doch mal in der Scheune nach. '
                     + 'Da war sie ja schon öfters.')
             .wait(7500)
-
-            .do(x => this.story && this.story.next());
-    }
-
-    create_out_dialog() {
-        this.dialog_init()
-            .let('finn')
-            .say('Schau mal, Karl! ich habe Lucy wieder gefunden!')
-            .wait(4000)
-
-            .let('karl')
-            .say('Das freut mich! Ich hab mir doch gleich gedacht, dass sie '
-                    + 'sich wieder in der Scheune versteckt haben wird!')
-            .wait(6000)
-
-            .let('finn')
-            .say('Danke, dass du mir geholfen hast! Wenn du Lust hast, komm '
-                    + 'mich wieder besuchen und wir können wieder Emma im '
-                    + 'Laden helfen oder Papas Ordner einsortieren!')
-            .wait(10000)
 
             .do(x => this.story && this.story.next());
     }
