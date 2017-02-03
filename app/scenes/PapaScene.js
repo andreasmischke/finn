@@ -15,10 +15,8 @@ export default class PapaScene extends Scene {
 
         if(this.part == 'in') {
             this.create_in_dialog();
-            this.set_background('01');
         } else {
             this.create_out_dialog();
-            this.set_background('03');
         }
 
         this.dialog.play();
@@ -83,11 +81,6 @@ export default class PapaScene extends Scene {
             .wait(2000)
 
             .do(x => this.story && this.story.next());
-    }
-
-    set_background(number) {
-        this.scene.style.setProperty('background-image',
-                                     `url(img/papa_scene_${number}.png)`);
     }
 
     cleanup(scene) {

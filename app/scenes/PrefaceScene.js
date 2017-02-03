@@ -9,7 +9,6 @@ export default class PrefaceScene extends Scene {
         scene.classList.add('preface');
 
         this.create_dialog();
-        this.set_background('01');
 
         this.dialog.play();
     }
@@ -62,11 +61,6 @@ export default class PrefaceScene extends Scene {
             .wait(5000)
 
             .do(x => this.story && this.story.next());
-    }
-
-    set_background(number) {
-        this.scene.style.setProperty('background-image',
-                                     `url(img/preface_scene_${number}.png)`);
     }
 
     cleanup(scene) {

@@ -1,9 +1,12 @@
 $dialog_bubble_bg: rgba(0,0,0,.75)
 
+&
+    background-image: url(img/emma_bg_draft.png)
+
 .dialog_bubble
     position: absolute
-    top: 3%
-    left: 55%
+    top: 50%
+    left: 25%
     height: 35%
     width: 30%
     background: $dialog_bubble_bg
@@ -25,15 +28,14 @@ $dialog_bubble_bg: rgba(0,0,0,.75)
     color: lightgreen
 
     &:after
-        top: 10%
-        right: 100%
-        @include triangle(-1em, 1em, 1em, -1em, $dialog_bubble_bg)
+        top: -3em
+        left: 70%
+        @include triangle(-1.5em, 1em, 1.5em, -1em, $dialog_bubble_bg)
 
 .dialog_bubble_finn
     color: fuchsia
 
     &:after
-        top: 100%
-        left: 70%
-        @include triangle(1.5em, -1em, -1.5em, 1em, $dialog_bubble_bg)
-
+        top: 10%
+        right: 100%
+        @include triangle(-1em, 1em, 1em, -1em, $dialog_bubble_bg)

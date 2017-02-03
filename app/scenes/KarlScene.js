@@ -15,13 +15,10 @@ export default class KarlScene extends Scene {
 
         if(this.part == 'in') {
             this.create_in_dialog();
-            this.set_background('01');
         } else if(this.part == 'mid') {
             this.create_mid_dialog();
-            this.set_background('02');
         } else {
             this.create_out_dialog();
-            this.set_background('03');
         }
 
         this.dialog.play();
@@ -91,11 +88,6 @@ export default class KarlScene extends Scene {
             .wait(10000)
 
             .do(x => this.story && this.story.next());
-    }
-
-    set_background(number) {
-        this.scene.style.setProperty('background-image',
-                                     `url(img/papa_scene_${number}.png)`);
     }
 
     cleanup(scene) {
