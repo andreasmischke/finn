@@ -183,18 +183,18 @@ export default class Dialog {
     }
 
     pause() {
-        this.timeout.pause();
+        this.timeout && this.timeout.pause();
         return this;
     }
 
     resume() {
-        this.timeout.resume();
+        this.timeout && this.timeout.resume();
         return this;
     }
 
     rewind() {
-        const state = this.timeout.state;
-        this.timeout.cancel();
+        const state = this.timeout.state || 'cancelled';
+        this.timeout && this.timeout.cancel();
         this.current = 0;
         if(state == 'playing') {
             this.play();
@@ -208,13 +208,13 @@ export default class Dialog {
     }
 
     next() {
-        this.timeout.cancel();
+        this.timeout && this.timeout.cancel();
         this.play();
         return this;
     }
 
     stop() {
-        this.timeout.cancel();
+        this.timeout && this.timeout.cancel();
         return this;
     }
 }
