@@ -125,7 +125,7 @@ export default class OfficeGameScene extends Scene {
                     this.showMessage("Sehr gut!!");
                     this.finish_timeout = setTimeout(x => this.story.next(), 3000);
                 } else {
-                    this.show_message("Sehr gut! Du hast alle Aufgaben gelöst!");
+                    this.showMessage("Sehr gut! Du hast alle Aufgaben gelöst!");
                 }
             } else {
                 this.showMessage("Leider falsch. Schau nochmal genau hin!");
@@ -212,5 +212,7 @@ export default class OfficeGameScene extends Scene {
     }
 
     cleanup(scene) {
+        clearTimeout(this.finish_timeout);
+        clearTimeout(this.messageBoxTimeout);
     }
 }
