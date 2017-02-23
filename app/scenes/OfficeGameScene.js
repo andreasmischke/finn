@@ -103,6 +103,8 @@ export default class OfficeGameScene extends Scene {
                 e.target.classList.remove('drop-target');
             }
         });
+
+        window.fast_forward = this.fast_forward;
     }
 
     check_finish() {
@@ -211,8 +213,20 @@ export default class OfficeGameScene extends Scene {
         return `${xOffset}% ${yOffset}%`;
     }
 
+    fast_forward() {
+        to_array(document.querySelectorAll('.folder_space')).filter((s) => {
+            return s.childElementCount == 0;
+        }).slice(0, -1).forEach((s) => {
+            const type = s.getAttribute('data-type'),
+                  selector = '.draggable_folder[data-type='+type+']',
+                  matchingFolder = document.querySelector(selector);
+            s.appendChild(matchingFolder);
+        });
+    }
+
     cleanup(scene) {
         clearTimeout(this.finish_timeout);
         clearTimeout(this.messageBoxTimeout);
+        window.fast_forward = undefined;
     }
 }

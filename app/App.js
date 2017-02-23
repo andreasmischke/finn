@@ -30,6 +30,8 @@ class App {
             scene_manager.navigate(new MainMenuScene());
         }
 
+        this.initialize_keyboard_listener();
+
         console.log('initialized');
     }
 
@@ -80,6 +82,16 @@ class App {
             el.style.left = (w - width) / 2 + "px";
         }
         el.style.fontSize = el.getBoundingClientRect()['height'] / 100 + "px";
+    }
+
+    initialize_keyboard_listener() {
+        document.addEventListener('keyup', function(e) {
+            if(e.keyCode == 96) {
+                window.skip && window.skip();
+            } else if(e.keyCode == 97) {
+                window.fast_forward && window.fast_forward();
+            }
+        });
     }
 
 }
