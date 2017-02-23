@@ -72,7 +72,6 @@ export default class MainMenuScene extends Scene {
         section.adopt(create_element('div')
             .class('heading')
             .class('heading_games')
-            .click(e => story.play())
             .text("Einzelspiele spielen")
             .render());
 
